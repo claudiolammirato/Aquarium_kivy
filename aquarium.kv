@@ -8,6 +8,23 @@ MainWidget:
             Label:
                 text: "Aquarium"
                 bold: True
+                text_size: self.size
+                valign: 'bottom'
+                halign: 'center'
+        BoxLayout:
+            size_hint: 1, None
+            height: 30
+            Label:
+                padding_x: dp(10)
+                id: time
+                text: '00:00:00'
+                font_name: 'fonts/dd.otf'
+                font_size: dp(20)
+                text_size: self.size
+                valign: 'top'
+                halign: 'right'
+
+
         BoxLayout:
             orientation: "vertical"
             BoxLayout:

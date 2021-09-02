@@ -55,36 +55,3 @@ class SQL_Database:
         self.cursor.execute(query)
 
 
-    def query(self,sql):
-        self.cursor.execute(sql)
-
-
-
-    @staticmethod
-    def summary(rows):
-            
-        # split the rows into columns
-        cols = [ [r[c] for r in rows] for c in range(len(rows[0])) ]
-        
-        # the time in terms of fractions of hours of how long ago
-        # the sample was assumes the sampling period is 10 minutes
-        t = lambda col: "{:.1f}".format((len(rows) - col) / 6.0)
-
-        # return a tuple, consisting of tuples of the maximum,
-        # the minimum and the average for each column and their
-        # respective time (how long ago, in fractions of hours)
-        # average has no time, of course
-        ret = []
-
-        for c in cols:
-            hi = max(c)
-            hi_t = t(c.index(hi))
-
-            lo = min(c)
-            lo_t = t(c.index(lo))
-
-            avg = sum(c)/len(rows)
-
-            ret.append(((hi,hi_t),(lo,lo_t),avg))
-
-        return ret

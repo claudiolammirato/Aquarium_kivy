@@ -46,12 +46,12 @@ class SQL_Database:
 
     
     def write(self,table,columns,data):
-        #print(table)
-        #print(columns)
-        #print(data)
-        
+       
         query = "INSERT INTO {0} ({1}) VALUES ({2});".format(table,columns,data)
-        print(query)
         self.cursor.execute(query)
 
+    def create_table(self,tablename):
+
+        query = "CREATE TABLE IF NOT EXISTS {0} (id integer PRIMARY KEY, temp integer);".format(tablename)
+        self.cursor.execute(query)
 

@@ -24,15 +24,34 @@ MainWidget:
                 valign: 'top'
                 halign: 'right'
 
-
         BoxLayout:
             orientation: "vertical"
             BoxLayout:
                 orientation: "horizontal"
                 BoxLayout:
-                    Button:
-                        text: "first box"
-                        bold: True
+                    orientation: "vertical"
+                    BoxLayout:
+                        Label:
+                            id: temp_int
+                            text: 'N/A°C'
+                            bold: True
+                        Label:
+                            id: temp_ext
+                            text: 'N/A°C'
+                            bold: True
+                        Label:
+                            id: hum_ext
+                            text: 'N/A%'
+                            bold: True
+                    BoxLayout:
+                        Label:
+                            id: date_int
+                            text: 'N/A'
+                            bold: True
+                        Label:
+                            id: date_ext
+                            text: 'N/A'
+                            bold: True
                 BoxLayout:
                     Label:
                         text: "second box"

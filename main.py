@@ -1,16 +1,23 @@
 from graphic import AquariumApp
 from sqlite_database import SQL_Database
 
+import traceback
 
-#AquariumApp().run()
+def check_database():
+    try:
+        database = SQL_Database('test.db')
+        print(database.get("sensors","temp_int"))
+        database.close()
+    except Exception:
+        #traceback.print_exc()
+        columns = "(id INTEGER PRIMARY KEY,temp_int FLOAT,temp_ext FLOAT,hum_ext FLOAT, date_int FLOAT, date_ext FLOAT)"
+        database.create_table("sensors", columns)
 
-database = SQL_Database('test.db')
+#check if Database is ok!!
+check_database()
 
-database.write( "aqua", "id, temp", '1, 34' )
+#Run Graphic environment
+AquariumApp().run()
 
-database.close()
 
-database = SQL_Database('test.db')
 
-print(database.get("aqua","temp"))
-database.close()

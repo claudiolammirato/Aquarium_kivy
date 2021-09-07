@@ -31,27 +31,46 @@ MainWidget:
                 BoxLayout:
                     orientation: "vertical"
                     BoxLayout:
-                        Label:
-                            id: temp_int
-                            text: 'N/A°C'
-                            bold: True
-                        Label:
-                            id: temp_ext
-                            text: 'N/A°C'
-                            bold: True
-                        Label:
-                            id: hum_ext
-                            text: 'N/A%'
-                            bold: True
-                    BoxLayout:
-                        Label:
-                            id: date_int
-                            text: 'N/A'
-                            bold: True
-                        Label:
-                            id: date_ext
-                            text: 'N/A'
-                            bold: True
+                        orientation: "vertical"
+                        BoxLayout:
+                            orientation: "horizontal"
+                            Label:
+                                text: 'Aquarium Temperature:'
+                                bold: True
+                            Label:
+                                id: temp_int
+                                text: 'N/A°C'
+                                bold: True
+                            Label:
+                                id: date_int
+                                text: 'N/A'
+                                bold: True
+                        BoxLayout:
+                            orientation:"horizontal"
+                            Label:
+                                text: 'External Temperature:'
+                                bold: True
+                            Label:
+                                id: temp_ext
+                                text: 'N/A°C'
+                                bold: True
+                            Label:
+                                id: date_ext
+                                text: 'N/A'
+                                bold: True
+                        BoxLayout:
+                            orientation:"horizontal"
+                            Label:
+                                text: 'External Humidity:'
+                                bold: True
+                            Label:
+                                id: hum_ext
+                                text: 'N/A%'
+                                bold: True
+                            Label:
+                                id: date_ext
+                                text: 'N/A'
+                                bold: True
                 BoxLayout:
                     Label:
                         text: "second box"

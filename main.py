@@ -17,8 +17,8 @@ def check_database():
 #check if Database is ok!!
 check_database()
 
-#Run Graphic environment
-AquariumApp().run()
+#THREADING SECTION
+#Graphic Section
 
-
-
+x = threading.Thread(target=AquariumApp().run(), args=(1,))
+x.start()

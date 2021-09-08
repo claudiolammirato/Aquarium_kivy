@@ -46,31 +46,31 @@ MainWidget:
                                 text: 'N/A'
                                 bold: True
                         BoxLayout:
-                            orientation:"horizontal"
-                            Label:
-                                text: 'External Temperature:'
-                                bold: True
-                            Label:
-                                id: temp_ext
-                                text: 'N/A°C'
-                                bold: True
-                            Label:
-                                id: date_ext
-                                text: 'N/A'
-                                bold: True
-                        BoxLayout:
-                            orientation:"horizontal"
-                            Label:
-                                text: 'External Humidity:'
-                                bold: True
-                            Label:
-                                id: hum_ext
-                                text: 'N/A%'
-                                bold: True
-                            Label:
-                                id: date_ext
-                                text: 'N/A'
-                                bold: True
+                            orientation: "horizontal"
+                            BoxLayout:
+                                orientation:"vertical"
+                                Label:
+                                    text: 'External Temperature:'
+                                    bold: True
+                                Label:
+                                    text: 'External Humidity:'
+                                    bold: True
+                                
+                            BoxLayout:
+                                orientation:"vertical"
+                                Label:
+                                    id: temp_ext
+                                    text: 'N/A°C'
+                                    bold: True
+                                Label:
+                                    id: hum_ext
+                                    text: 'N/A%'
+                                    bold: True
+                            BoxLayout:
+                                Label:
+                                    id: date_ext
+                                    text: 'N/A'
+                                    bold: True
                 BoxLayout:
                     Label:
                         text: "second box"

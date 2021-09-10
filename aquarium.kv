@@ -1,4 +1,23 @@
-MainWidget:
+PageLayout:
+
+<PageLayout>:
+    # creating Page 1
+    Button:
+        text: "Page 1"
+ 
+    # creating Page 2
+    MainWidget:
+ 
+    # creating Page 3
+    Button:
+        text: "Page 3"
+ 
+    # creating Page 3
+    Button:
+        text: "Page 4"
+ 
+
+<MainWidget>:
     #Header
     BoxLayout:
         orientation: "vertical"
@@ -104,3 +123,12 @@ MainWidget:
                             Rectangle:
                                 pos: self.pos
                                 size: self.size
+
+
+
+<BoxLayoutExample@BoxLayout>:
+    BoxLayout:
+        orientation: "horizontal"
+        Label:
+            text: 'Aquarium Temperature:'
+            bold: True

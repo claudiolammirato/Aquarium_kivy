@@ -4,12 +4,17 @@ from kivy.clock import Clock
 from datetime import datetime
 from kivy.properties import StringProperty
 from sqlite_database import SQL_Database
+from kivy.uix.pagelayout import PageLayout
+
+class PageLayout(PageLayout):
+    pass
 
 class MainWidget(BoxLayout):
     def __init__(self, **kwargs):
         super(MainWidget, self).__init__(**kwargs)
         Clock.schedule_once(self.update_sensors, 1)
-        Clock.schedule_interval(self.update_sensors, 60*30)        
+        Clock.schedule_interval(self.update_sensors, 60*30) 
+        Clock.schedule_interval(self.update_time, 1)      
     
     def update_sensors(self, nap):
         #Data Extraction from Database
@@ -20,14 +25,14 @@ class MainWidget(BoxLayout):
         self.ids.hum_ext.text = str(data[2])+'%'
         self.ids.date_int.text = str(datetime.fromtimestamp(data[3]).strftime('%I:%M %p'))
         self.ids.date_ext.text = str(datetime.fromtimestamp(data[4]).strftime('%I:%M %p'))
-    
-class AquariumApp(App):
+
     def update_time(self, nap):
         now = datetime.now()
-        self.root.ids.time.text = now.strftime('%H:%M:%S')
-
-    def on_start(self):
-        Clock.schedule_interval(self.update_time, 1)
+        self.ids.time.text = now.strftime('%H:%M:%S')
+    
+class AquariumApp(App):
+    pass
+        
 
 
 

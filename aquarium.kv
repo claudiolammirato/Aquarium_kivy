@@ -76,7 +76,7 @@ MainWidget:
                                     bold: True
                 BoxLayout:
                     Label:
-                        text: "second box"
+                        text: "Graph box"
                         bold: True
                         canvas.before:
                             Color:
@@ -88,7 +88,7 @@ MainWidget:
                 orientation: "horizontal"
                 BoxLayout:
                     Label:
-                        text: "third box"
+                        text: "Relay box"
                         bold: True
                         canvas.before:
                             Color:
@@ -98,7 +98,7 @@ MainWidget:
                                 size: self.size
                 BoxLayout:
                     Label:
-                        text: "forth box"
+                        text: "Button Box"
                         bold: True
                         canvas.before:
                             Color:
@@ -106,13 +106,14 @@ MainWidget:
                             Rectangle:
                                 pos: self.pos
                                 size: self.size
-                    Button:
-                        text: 'Goto settings'
-                        on_press:
-                            root.manager.transition.direction = 'left'
-                            root.manager.current = 'settings'
-                    Button:
-                        text: 'Quit'
+                    BoxLayout:
+                        Button:
+                            text: 'Goto settings'
+                            on_press:
+                                root.manager.transition.direction = 'left'
+                                root.manager.current = 'settings'
+                        Button:
+                            text: 'Quit'
                         
 
 <MenuScreen>:

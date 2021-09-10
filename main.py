@@ -11,8 +11,10 @@ def check_database():
         database.close()
     except Exception:
         #traceback.print_exc()
-        columns = "(id INTEGER PRIMARY KEY,temp_int FLOAT,temp_ext FLOAT,hum_ext FLOAT, date_int FLOAT, date_ext FLOAT)"
-        database.create_table("sensors", columns)
+        columns_int = "(id INTEGER PRIMARY KEY,temp_int FLOAT, date_int FLOAT)"
+        columns_ext = "(id INTEGER PRIMARY KEY,temp_ext FLOAT,hum_ext FLOAT, date_ext FLOAT)"
+        database.create_table("sensors_int", columns_int)
+        database.create_table("sensors_ext", columns_ext)
 
 #check if Database is ok!!
 check_database()

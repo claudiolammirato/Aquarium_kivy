@@ -1,21 +1,4 @@
-PageLayout:
-
-<PageLayout>:
-    # creating Page 1
-    Button:
-        text: "Page 1"
- 
-    # creating Page 2
-    MainWidget:
- 
-    # creating Page 3
-    Button:
-        text: "Page 3"
- 
-    # creating Page 3
-    Button:
-        text: "Page 4"
- 
+MainWidget: 
 
 <MainWidget>:
     #Header
@@ -123,12 +106,47 @@ PageLayout:
                             Rectangle:
                                 pos: self.pos
                                 size: self.size
+                    Button:
+                        text: 'Goto settings'
+                        on_press:
+                            root.manager.transition.direction = 'left'
+                            root.manager.current = 'settings'
+                    Button:
+                        text: 'Quit'
+                        
 
-
-
-<BoxLayoutExample@BoxLayout>:
+<MenuScreen>:
+    #Header
     BoxLayout:
-        orientation: "horizontal"
-        Label:
-            text: 'Aquarium Temperature:'
-            bold: True
+        orientation: "vertical"
+        BoxLayout:
+            size_hint: 1, None
+            height: 30
+
+            Label:
+                text: "Aquarium"
+                bold: True
+                text_size: self.size
+                valign: 'bottom'
+                halign: 'center'
+        BoxLayout:
+            size_hint: 1, None
+            height: 30
+            Label:
+                padding_x: dp(10)
+                id: time
+                text: '00:00:00'
+                font_name: 'fonts/dd.otf'
+                font_size: dp(20)
+                text_size: self.size
+                valign: 'top'
+                halign: 'right'
+    
+        BoxLayout:
+            Button:
+                text: 'My settings button'
+            Button:
+                text: 'Back to menu'
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'menu'

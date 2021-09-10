@@ -4,12 +4,12 @@ from kivy.clock import Clock
 from datetime import datetime
 from kivy.properties import StringProperty
 from sqlite_database import SQL_Database
-from kivy.uix.pagelayout import PageLayout
+from kivy.uix.screenmanager import ScreenManager, Screen
 
-class PageLayout(PageLayout):
+class MenuScreen(Screen):
     pass
 
-class MainWidget(BoxLayout):
+class MainWidget(Screen):
     def __init__(self, **kwargs):
         super(MainWidget, self).__init__(**kwargs)
         Clock.schedule_once(self.update_sensors, 1)
@@ -31,7 +31,13 @@ class MainWidget(BoxLayout):
         self.ids.time.text = now.strftime('%H:%M:%S')
     
 class AquariumApp(App):
-    pass
+    def build(self):
+        # Create the screen manager
+        sm = ScreenManager()
+        sm.add_widget(MainWidget(name='menu'))
+        sm.add_widget(MenuScreen(name='settings'))
+
+        return sm
         
 
 

@@ -24,19 +24,24 @@ class SQL_Database:
             self.cursor.close()
             self.conn.close()
     def get(self,table,columns,limit=None):
+        try:
+            query = "SELECT {0} from {1};".format(columns,table)
+            self.cursor.execute(query)
 
-        query = "SELECT {0} from {1};".format(columns,table)
-        self.cursor.execute(query)
-
-        # fetch data
-        rows = self.cursor.fetchall()
+            # fetch data
+            rows = self.cursor.fetchall()
+        except:
+            print('database error')
 
         return rows[len(rows)-limit if limit else 0:]
     def getLast(self,table,columns):
-        
-        return self.get(table,columns,limit=1)[0]
-    def write(self,table,columns,data):
-        query = "INSERT INTO {0} ({1}) VALUES ({2});".format(table,columns,data)
+        try:
+            return self.get(table,columns,limit=1)[0]
+        except:
+            print('Dtabase Error')
+    def write(self,table,columns,temp_int, date_int):
+        query = "INSERT INTO {0} ({1}) VALUES ({2}, {3});".format(table,columns,temp_int, date_int)
+        print(query)
         self.cursor.execute(query)
     def create_table(self, table_name, columns):
         query = "CREATE TABLE {0} {1}".format(table_name, columns)

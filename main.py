@@ -1,13 +1,13 @@
 from graphic import AquariumApp
 from sqlite_database import SQL_Database
 import threading
-
+from sqlite_database import SQL_Database
 import traceback
 
 def check_database():
     try:
         database = SQL_Database('test.db')
-        print(database.get("sensors","temp_int"))
+        print(database.get("sensors_int","temp_int"))
         database.close()
     except Exception:
         #traceback.print_exc()

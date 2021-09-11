@@ -19,12 +19,20 @@ class MainWidget(Screen):
     def update_sensors(self, nap):
         #Data Extraction from Database
         database = SQL_Database('test.db')
-        data = database.getLast("sensors", ("temp_int, temp_ext, hum_ext, date_int, date_ext"))
-        self.ids.temp_int.text = str(data[0])+'°C'
-        self.ids.temp_ext.text = str(data[1])+'°C'
-        self.ids.hum_ext.text = str(data[2])+'%'
-        self.ids.date_int.text = str(datetime.fromtimestamp(data[3]).strftime('%I:%M %p'))
-        self.ids.date_ext.text = str(datetime.fromtimestamp(data[4]).strftime('%I:%M %p'))
+        data_int = database.getLast("sensors_int", ("temp_int, temp_int, date_int"))
+        data_ext = database.getLast("sensors_ext", ("temp_ext, hum_ext, date_ext"))
+        if(data_int):
+            self.ids.temp_int.text = str(data_int[0])+'°C'
+            self.ids.date_int.text = str(datetime.fromtimestamp(data_int[1]).strftime('%I:%M %p'))
+        else:
+            print('internal value error')
+
+        if(data_ext):
+            self.ids.temp_ext.text = str(data_ext[0])+'°C'
+            self.ids.hum_ext.text = str(data_ext[1])+'%'
+            self.ids.date_ext.text = str(datetime.fromtimestamp(data_ext[2]).strftime('%I:%M %p'))
+        else:
+            print('external value error')
 
     def update_time(self, nap):
         now = datetime.now()

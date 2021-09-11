@@ -31,17 +31,17 @@ class SQL_Database:
             # fetch data
             rows = self.cursor.fetchall()
         except:
-            print('database error')
+            print('Database error')
 
         return rows[len(rows)-limit if limit else 0:]
     def getLast(self,table,columns):
         try:
             return self.get(table,columns,limit=1)[0]
         except:
-            print('Dtabase Error')
-    def write(self,table,columns,temp_int, date_int):
-        query = "INSERT INTO {0} ({1}) VALUES ({2}, {3});".format(table,columns,temp_int, date_int)
-        print(query)
+            print('Database Error')
+    def write(self,table,columns,data):
+        query = "INSERT INTO {0} ({1}) VALUES ({2});".format(table,columns,data)
+        #print(query)
         self.cursor.execute(query)
     def create_table(self, table_name, columns):
         query = "CREATE TABLE {0} {1}".format(table_name, columns)

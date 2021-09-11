@@ -49,13 +49,13 @@ class DS18B20:
         else:
             datab = SQL_Database()
             datab.open('test.db')
-            datab.write('sensors_int','temp_int, date_int',-1000,time.time())
+            datab.write('sensors_int','temp_int, date_int','-1000,'+str(time.time()))
             datab.close()
-            print('Temperature Error!!!')
+            print('Internal Sensor Error!!!')
                       
     
     def print_temps(self):
-        print('-'*90)
+        #print('-'*90)
         for t, n, c, f in self.log:
             print(f'Sensor: {n}  C={c:,.3f}  F={f:,.3f}  DateTime: {t}')
 
@@ -63,10 +63,9 @@ class DS18B20:
         self.log.clear()
 
     def run(self):
-        print('cycle')
+        #print('cycle')
         self.find_sensors()
         self.read_temp()
-        self.print_temps()
+         #self.print_temps()
         self.clear_log()
-        time.sleep(10)
         t = threading.Timer(10.0, self.run).start()

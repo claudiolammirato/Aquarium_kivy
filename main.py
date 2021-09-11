@@ -3,11 +3,12 @@ from sqlite_database import SQL_Database
 import threading
 import traceback
 from ds18_sensor import DS18B20
+from dht_sensor import DHT
 
 def check_database():
     try:
         database = SQL_Database('test.db')
-        print(database.get("sensors_int","temp_int"))
+        #print(database.get("sensors_int","temp_int"))
         database.close()
     except Exception:
         #traceback.print_exc()
@@ -16,17 +17,26 @@ def check_database():
         database.create_table("sensors_int", columns_int)
         database.create_table("sensors_ext", columns_ext)
 
-#check if Database is ok!!
-check_database()
 
-#THREADING SECTION
-#Graphic Section
+def main():
 
-x = threading.Thread(target=AquariumApp().run(), args=(1,))
-x.start()
+    #check if Database is ok!!
+    check_database()
 
-#Sensor Section
-sensor_internal = DS18B20()
-print(sensor_internal)
-y = threading.Thread(target=sensor_internal.run(), args=(1,))
-y.start()
+    #THREADING SECTION
+    #Sensor Section
+    sensor_internal = DS18B20()
+    p1 = threading.Thread(target=sensor_internal.run())
+    p1.start()
+
+    sensor_external = DHT()
+    p2 = threading.Thread(target=sensor_external.run())
+    p2.start()
+
+    #Graphic Section - HAS TO BE LAST!!!!
+    p3 = threading.Thread(target=AquariumApp().run())
+    p3.start()
+
+
+if __name__ == "__main__":
+    main()

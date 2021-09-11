@@ -6,7 +6,10 @@ from kivy.properties import StringProperty
 from sqlite_database import SQL_Database
 from kivy.uix.screenmanager import ScreenManager, Screen
 
-class MenuScreen(Screen):
+class SettingScreen(Screen):
+    pass
+
+class GraphScreen(Screen):
     pass
 
 class MainWidget(Screen):
@@ -52,7 +55,8 @@ class AquariumApp(App):
         # Create the screen manager
         sm = ScreenManager()
         sm.add_widget(MainWidget(name='menu'))
-        sm.add_widget(MenuScreen(name='settings'))
+        sm.add_widget(SettingScreen(name='settings'))
+        sm.add_widget(GraphScreen(name='graphs'))
 
         return sm
         

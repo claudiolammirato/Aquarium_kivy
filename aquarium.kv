@@ -108,15 +108,18 @@ MainWidget:
                                 size: self.size
                     BoxLayout:
                         Button:
-                            text: 'Goto settings'
+                            text: 'Settings'
                             on_press:
                                 root.manager.transition.direction = 'left'
                                 root.manager.current = 'settings'
-                        Button:
-                            text: 'Quit'
+                        Button:    
+                            text: 'Graph'
+                            on_press:
+                                root.manager.transition.direction = 'left'
+                                root.manager.current = 'graphs'
                         
 
-<MenuScreen>:
+<SettingScreen>:
     #Header
     BoxLayout:
         orientation: "vertical"
@@ -151,3 +154,14 @@ MainWidget:
                 on_press:
                     root.manager.transition.direction = 'right'
                     root.manager.current = 'menu'
+
+                
+<GraphScreen>:
+    BoxLayout:
+        Label:
+            text: 'GRAPH'
+        Button:
+            text: 'Back to menu'
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'menu'

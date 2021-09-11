@@ -4,24 +4,33 @@ import threading
 import traceback
 from ds18_sensor import DS18B20
 from dht_sensor import DHT
+import time
 
 def check_database():
+    print('check database')
     try:
         database = SQL_Database('test.db')
-        #print(database.get("sensors_int","temp_int"))
+        database.get("sensors_int","temp_int")
+        database.get("sensors_ext","temp_ext")
+        #print('in')
         database.close()
     except Exception:
-        #traceback.print_exc()
+        database = SQL_Database('test.db')
+        traceback.print_exc()
         columns_int = "(id INTEGER PRIMARY KEY,temp_int FLOAT, date_int FLOAT)"
         columns_ext = "(id INTEGER PRIMARY KEY,temp_ext FLOAT,hum_ext FLOAT, date_ext FLOAT)"
         database.create_table("sensors_int", columns_int)
         database.create_table("sensors_ext", columns_ext)
-
+        database.close()
+        #print('error')
 
 def main():
 
     #check if Database is ok!!
-    check_database()
+    p0 = threading.Thread(target = check_database())
+    p0.start()
+    p0.join()
+    #check_database()
 
     #THREADING SECTION
     #Sensor Section

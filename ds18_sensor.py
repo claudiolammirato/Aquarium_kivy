@@ -43,7 +43,8 @@ class DS18B20:
                     time.sleep(2)
                     datab = SQL_Database()
                     datab.open('test.db')
-                    datab.write('sensors_int','temp_int, date_int',self.log.c+','+tstamp)
+                    #print(self.log[0][2])
+                    datab.write('sensors_int','temp_int, date_int',str(self.log[0][2])+','+str(tstamp))
                     datab.close()
             print('Temperature retrieved')
         else:
@@ -68,4 +69,4 @@ class DS18B20:
         self.read_temp()
          #self.print_temps()
         self.clear_log()
-        t = threading.Timer(10.0, self.run).start()
+        t = threading.Timer(60*30, self.run).start()

@@ -30,7 +30,7 @@ class MainWidget(Screen):
             if(data_int[0]==-1000):
                 self.ids.temp_int.text = ' SENSOR ERROR'
             else:
-                self.ids.temp_int.text = str(data_int[0])+'°C'
+                self.ids.temp_int.text = str(data_int[0])[0:4]+'°C'
             self.ids.date_int.text = str(datetime.fromtimestamp(data_int[1]).strftime('%I:%M %p'))
         else:
             print('internal value error')
@@ -40,8 +40,8 @@ class MainWidget(Screen):
                 self.ids.temp_ext.text = ' SENSOR ERROR'
                 self.ids.hum_ext.text = ' SENSOR ERROR'
             else:
-                self.ids.temp_ext.text = str(data_ext[0])+'°C'
-                self.ids.hum_ext.text = str(data_ext[1])+'%'
+                self.ids.temp_ext.text = str(data_ext[0])[0:4]+'°C'
+                self.ids.hum_ext.text = str(data_ext[1])[0:4]+'%'
             self.ids.date_ext.text = str(datetime.fromtimestamp(data_ext[2]).strftime('%I:%M %p'))
         else:
             print('external value error')

@@ -22,15 +22,18 @@ class MainWidget(Screen):
         data_int = database.getLast("sensors_int", ("temp_int, temp_int, date_int"))
         data_ext = database.getLast("sensors_ext", ("temp_ext, hum_ext, date_ext"))
         if(data_int):
-            self.ids.temp_int.text = str(data_int[0])+'°C'
-            self.ids.date_int.text = str(datetime.fromtimestamp(data_int[1]).strftime('%I:%M %p'))
+            if(data_int[1]==-1000):
+                self.ids.temp_int.text = ' SENSOR ERROR'
+            else:
+                self.ids.temp_int.text = str(data_int[1])+'°C'
+            self.ids.date_int.text = str(datetime.fromtimestamp(data_int[2]).strftime('%I:%M %p'))
         else:
             print('internal value error')
 
         if(data_ext):
-            self.ids.temp_ext.text = str(data_ext[0])+'°C'
-            self.ids.hum_ext.text = str(data_ext[1])+'%'
-            self.ids.date_ext.text = str(datetime.fromtimestamp(data_ext[2]).strftime('%I:%M %p'))
+            self.ids.temp_ext.text = str(data_ext[1])+'°C'
+            self.ids.hum_ext.text = str(data_ext[2])+'%'
+            self.ids.date_ext.text = str(datetime.fromtimestamp(data_ext[3]).strftime('%I:%M %p'))
         else:
             print('external value error')
 

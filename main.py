@@ -1,8 +1,8 @@
 from graphic import AquariumApp
 from sqlite_database import SQL_Database
 import threading
-from sqlite_database import SQL_Database
 import traceback
+from ds18_sensor import DS18B20
 
 def check_database():
     try:
@@ -24,3 +24,9 @@ check_database()
 
 x = threading.Thread(target=AquariumApp().run(), args=(1,))
 x.start()
+
+#Sensor Section
+sensor_internal = DS18B20()
+print(sensor_internal)
+y = threading.Thread(target=sensor_internal.run(), args=(1,))
+y.start()

@@ -2,6 +2,7 @@ import os
 import glob
 import time
 from sqlite_database import SQL_Database
+import threading
 
 #these tow lines mount the device:
 #os.system('modprobe w1-gpio')
@@ -42,10 +43,14 @@ class DS18B20:
                     time.sleep(2)
                     datab = SQL_Database()
                     datab.open('test.db')
-                    datab.write('sensors_int','temp_int, date_int',self.log.c,10000)
+                    datab.write('sensors_int','temp_int, date_int',self.log.c,tstamp)
                     datab.close()
             print('Temperature retrieved')
         else:
+            datab = SQL_Database()
+            datab.open('test.db')
+            datab.write('sensors_int','temp_int, date_int',-1000,time.time())
+            datab.close()
             print('Temperature Error!!!')
                       
     
@@ -55,13 +60,13 @@ class DS18B20:
             print(f'Sensor: {n}  C={c:,.3f}  F={f:,.3f}  DateTime: {t}')
 
     def clear_log(self):
-        s.log.clear()
+        self.log.clear()
 
-s = DS18B20()
-s.find_sensors()
-
-while True:
-    s.read_temp()
-    s.print_temps()
-    s.clear_log()
-    time.sleep(10)
+    def run(self):
+        print('cycle')
+        self.find_sensors()
+        self.read_temp()
+        self.print_temps()
+        self.clear_log()
+        time.sleep(10)
+        t = threading.Timer(10.0, self.run).start()

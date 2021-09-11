@@ -16,8 +16,10 @@ class DHT:
             if humidity is not None and temperature is not None:
                 print("Temp={0:0.1f}*C  Humidity={1:0.1f}%".format(temperature, humidity))
                 #return temperature, humidity
-                table = "SENSORS_EXT"
-                insert_item(temperature, humidity, 999, table)
+                datab = SQL_Database()
+                datab.open('test.db')
+                datab.write('sensors_ext','temp_ext,hum_ext, date_ext',temperature+','+humidity+','+ str(time.time()))
+                datab.close()
             else:
                 print("Failed to retrieve data from humidity sensor")
                 #return error

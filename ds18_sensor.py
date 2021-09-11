@@ -43,7 +43,7 @@ class DS18B20:
                     time.sleep(2)
                     datab = SQL_Database()
                     datab.open('test.db')
-                    datab.write('sensors_int','temp_int, date_int',self.log.c,tstamp)
+                    datab.write('sensors_int','temp_int, date_int',self.log.c+','+tstamp)
                     datab.close()
             print('Temperature retrieved')
         else:

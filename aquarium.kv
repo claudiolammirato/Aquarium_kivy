@@ -40,6 +40,10 @@ MainWidget:
                     orientation: "vertical"
                     BoxLayout:
                         orientation: "vertical"
+                        Label:
+                            canvas.before:
+                                Color:
+                                rgb: 0.5,0.5,0.5    
                         BoxLayout:
                             orientation: "horizontal"
                             Label:
@@ -85,7 +89,7 @@ MainWidget:
                         bold: True
                         canvas.before:
                             Color:
-                                rgb: 0,1,0
+                                rgb: 0.5,0.5,0.5
                             Rectangle:
                                 pos: self.pos
                                 size: self.size
@@ -97,7 +101,7 @@ MainWidget:
                         bold: True
                         canvas.before:
                             Color:
-                                rgb: 1,0,1
+                                rgb: 0.5,0.5,0.5
                             Rectangle:
                                 pos: self.pos
                                 size: self.size
@@ -107,7 +111,7 @@ MainWidget:
                         bold: True
                         canvas.before:
                             Color:
-                                rgb: 0,1,1
+                                rgb: 0.5,0.5,0.5
                             Rectangle:
                                 pos: self.pos
                                 size: self.size

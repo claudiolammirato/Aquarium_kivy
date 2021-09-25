@@ -1,0 +1,128 @@
+#:kivy 2.0
+
+#:include settings.kv
+#:include graph.kv
+
+MainWidget: 
+
+<MainWidget>:
+    #Header
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            size_hint: 1, None
+            height: 30
+
+            Label:
+                text: "Aquarium"
+                bold: True
+                text_size: self.size
+                valign: 'bottom'
+                halign: 'center'
+        BoxLayout:
+            size_hint: 1, None
+            height: 30
+            Label:
+                padding_x: dp(10)
+                id: time
+                text: '00:00:00'
+                font_name: 'fonts/dd.otf'
+                font_size: dp(20)
+                text_size: self.size
+                valign: 'top'
+                halign: 'right'
+
+        BoxLayout:
+            orientation: "vertical"
+            BoxLayout:
+                orientation: "horizontal"
+                BoxLayout:
+                    orientation: "vertical"
+                    BoxLayout:
+                        orientation: "vertical"
+                        BoxLayout:
+                            orientation: "horizontal"
+                            Label:
+                                text: 'Aquarium Temperature:'
+                                bold: True
+                            Label:
+                                id: temp_int
+                                text: 'N/A°C'
+                                bold: True
+                            Label:
+                                id: date_int
+                                text: 'N/A'
+                                bold: True
+                        BoxLayout:
+                            orientation: "horizontal"
+                            BoxLayout:
+                                orientation:"vertical"
+                                Label:
+                                    text: 'External Temperature:'
+                                    bold: True
+                                Label:
+                                    text: 'External Humidity:'
+                                    bold: True
+                                
+                            BoxLayout:
+                                orientation:"vertical"
+                                Label:
+                                    id: temp_ext
+                                    text: 'N/A°C'
+                                    bold: True
+                                Label:
+                                    id: hum_ext
+                                    text: 'N/A%'
+                                    bold: True
+                            BoxLayout:
+                                Label:
+                                    id: date_ext
+                                    text: 'N/A'
+                                    bold: True
+                BoxLayout:
+                    Label:
+                        text: "Graph box"
+                        bold: True
+                        canvas.before:
+                            Color:
+                                rgb: 0.5,0.5,0.5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+            BoxLayout:
+                orientation: "horizontal"
+                BoxLayout:
+                    Label:
+                        text: "Relay box"
+                        bold: True
+                        canvas.before:
+                            Color:
+                                rgb: 0.5,0.5,0.5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                BoxLayout:
+                    Label:
+                        text: "Button Box"
+                        bold: True
+                        canvas.before:
+                            Color:
+                                rgb: 0.5,0.5,0.5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    BoxLayout:
+                        Button:
+                            text: 'Settings'
+                            on_press:
+                                root.manager.transition.direction = 'left'
+                                root.manager.current = 'settings'
+                        Button:    
+                            text: 'Graph'
+                            on_press:
+                                root.manager.transition.direction = 'left'
+                                root.manager.current = 'graphs'
+                        
+
+
+

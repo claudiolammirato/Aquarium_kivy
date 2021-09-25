@@ -6,127 +6,78 @@
 MainWidget: 
 
 <MainWidget>:
-    #Header
-    BoxLayout:
-        orientation: "vertical"
-        BoxLayout:
-            size_hint: 1, None
-            height: 30
 
-            Label:
-                text: "Aquarium"
-                bold: True
-                text_size: self.size
-                valign: 'bottom'
-                halign: 'center'
-        BoxLayout:
-            size_hint: 1, None
-            height: 30
-            Label:
-                padding_x: dp(10)
-                id: time
-                text: '00:00:00'
-                font_name: 'fonts/dd.otf'
-                font_size: dp(20)
-                text_size: self.size
-                valign: 'top'
-                halign: 'right'
-
-        BoxLayout:
-            orientation: "vertical"
-            BoxLayout:
-                orientation: "horizontal"
-                BoxLayout:
-                    orientation: "vertical"
-                    BoxLayout:
-                        orientation: "vertical"
-                        Label:
-                            canvas.before:
-                                Color:
-                                rgb: 0.5,0.5,0.5    
-                        BoxLayout:
-                            orientation: "horizontal"
-                            Label:
-                                text: 'Aquarium Temperature:'
-                                bold: True
-                            Label:
-                                id: temp_int
-                                text: 'N/A°C'
-                                bold: True
-                            Label:
-                                id: date_int
-                                text: 'N/A'
-                                bold: True
-                        BoxLayout:
-                            orientation: "horizontal"
-                            BoxLayout:
-                                orientation:"vertical"
-                                Label:
-                                    text: 'External Temperature:'
-                                    bold: True
-                                Label:
-                                    text: 'External Humidity:'
-                                    bold: True
-                                
-                            BoxLayout:
-                                orientation:"vertical"
-                                Label:
-                                    id: temp_ext
-                                    text: 'N/A°C'
-                                    bold: True
-                                Label:
-                                    id: hum_ext
-                                    text: 'N/A%'
-                                    bold: True
-                            BoxLayout:
-                                Label:
-                                    id: date_ext
-                                    text: 'N/A'
-                                    bold: True
-                BoxLayout:
-                    Label:
-                        text: "Graph box"
-                        bold: True
-                        canvas.before:
-                            Color:
-                                rgb: 0.5,0.5,0.5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-            BoxLayout:
-                orientation: "horizontal"
-                BoxLayout:
-                    Label:
-                        text: "Relay box"
-                        bold: True
-                        canvas.before:
-                            Color:
-                                rgb: 0.5,0.5,0.5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                BoxLayout:
-                    Label:
-                        text: "Button Box"
-                        bold: True
-                        canvas.before:
-                            Color:
-                                rgb: 0.5,0.5,0.5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                    BoxLayout:
-                        Button:
-                            text: 'Settings'
-                            on_press:
-                                root.manager.transition.direction = 'left'
-                                root.manager.current = 'settings'
-                        Button:    
-                            text: 'Graph'
-                            on_press:
-                                root.manager.transition.direction = 'left'
-                                root.manager.current = 'graphs'
-                        
+    #top
+    Label:
+        text: "Aquarium"
+        bold: True
+        pos: 0, 280
+    Label:
+        id: time
+        text: '00:00:00'
+        font_name: 'fonts/dd.otf'
+        pos: 450,280
 
 
+    Label:
+        text: 'Aquarium Temperature:'
+        bold: True
+        pos: -400, 200
+    Label:
+        id: temp_int
+        text: 'N/A°C'
+        bold: True
+        pos: -250, 200
+    Label:
+        id: date_int
+        text: 'N/A'
+        bold: True
+        pos: -150, 200
 
+
+    Label:
+        text: 'External Temperature:'
+        bold: True
+        pos: -400, 170
+    Label:
+        text: 'External Humidity:'
+        bold: True
+        pos: -400, 140
+    Label:
+        id: temp_ext
+        text: 'N/A°C'
+        bold: True
+        pos: -250, 170
+    Label:
+        id: hum_ext
+        text: 'N/A%'
+        bold: True
+        pos: -250, 140
+    Label:
+        id: date_ext
+        text: 'N/A'
+        bold: True
+        pos: -150, 155
+
+
+    
+
+
+    Button:
+        text: 'Settings'
+        on_press:
+            root.manager.transition.direction = 'left'
+            root.manager.current = 'settings'
+        size_hint: None, None
+        size: 100, 50
+        pos: 800, 0
+        
+    Button:    
+        text: 'Graph'
+        on_press:
+            root.manager.transition.direction = 'left'
+            root.manager.current = 'graphs'
+        size_hint: None, None
+        size: 100, 50
+        pos: 900, 0
+        

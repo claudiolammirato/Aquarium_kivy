@@ -5,6 +5,10 @@ from datetime import datetime
 from kivy.properties import StringProperty
 from sqlite_database import SQL_Database
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.config import Config
+
+Config.set('graphics', 'width', '1024')
+Config.set('graphics', 'height', '600')
 
 class SettingScreen(Screen):
     pass
@@ -28,7 +32,7 @@ class MainWidget(Screen):
         #print(data_ext)
         if(data_int):
             if(data_int[0]==-1000):
-                self.ids.temp_int.text = ' SENSOR ERROR'
+                self.ids.temp_int.text = str('SENSOR ERROR')
             else:
                 self.ids.temp_int.text = str(data_int[0])[0:4]+'°C'
             self.ids.date_int.text = str(datetime.fromtimestamp(data_int[1]).strftime('%I:%M %p'))

@@ -10,11 +10,28 @@ from kivy.config import Config
 Config.set('graphics', 'width', '1024')
 Config.set('graphics', 'height', '600')
 
+from matplotlib import pyplot as plt
+import numpy as np
+from kivy.garden.matplotlib import FigureCanvasKivyAgg
+
+
+
 class SettingScreen(Screen):
     pass
 
 class GraphScreen(Screen):
-    pass
+    def __init__(self, **kwargs):
+        signal = [7, 89.6, 45.-56.34]
+    
+        signal = np.array(signal)
+            
+        # this will plot the signal on graph
+        plt.plot(signal)
+          
+        canvas = FigureCanvasKivyAgg(plt.gcf())   
+        # adding plot to kivy boxlayout
+        #self.add_widget(canvas)
+    
 
 class MainWidget(Screen):
     def __init__(self, **kwargs):
@@ -56,6 +73,8 @@ class MainWidget(Screen):
     
 class AquariumApp(App):
     def build(self):
+
+        
         # Create the screen manager
         sm = ScreenManager()
         sm.add_widget(MainWidget(name='menu'))

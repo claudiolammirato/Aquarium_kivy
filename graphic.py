@@ -3,6 +3,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
 from datetime import datetime
 from kivy.properties import StringProperty
+from kivy.uix.floatlayout import FloatLayout
 from sqlite_database import SQL_Database
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.config import Config
@@ -21,6 +22,12 @@ class SettingScreen(Screen):
 
 class GraphScreen(Screen):
     def __init__(self, **kwargs):
+        super(GraphScreen, self).__init__(**kwargs)
+
+        layout = BoxLayout(orientation ='vertical')
+        self.add_widget(layout)
+        
+
         signal = [7, 89.6, 45.-56.34]
     
         signal = np.array(signal)
@@ -30,7 +37,8 @@ class GraphScreen(Screen):
           
         canvas = FigureCanvasKivyAgg(plt.gcf())   
         # adding plot to kivy boxlayout
-        #self.add_widget(canvas)
+        self.ids.box.add_widget(canvas)
+        #layout.add_widget(canvas) 
     
 
 class MainWidget(Screen):

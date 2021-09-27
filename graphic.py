@@ -2,8 +2,6 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
 from datetime import datetime
-from kivy.properties import StringProperty
-from kivy.uix.floatlayout import FloatLayout
 from sqlite_database import SQL_Database
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.config import Config

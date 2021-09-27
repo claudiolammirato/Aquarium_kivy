@@ -14,6 +14,7 @@ Config.set('graphics', 'height', '600')
 from matplotlib import pyplot as plt
 import numpy as np
 from kivy.garden.matplotlib import FigureCanvasKivyAgg
+from plot_graph import MatPlot
 
 
 
@@ -23,20 +24,10 @@ class SettingScreen(Screen):
 class GraphScreen(Screen):
     def __init__(self, **kwargs):
         super(GraphScreen, self).__init__(**kwargs)
-
         layout = BoxLayout(orientation ='vertical')
         self.add_widget(layout)
-        
-
-        signal = [7, 89.6, 45.-56.34]
-    
-        signal = np.array(signal)
-            
-        # this will plot the signal on graph
-        plt.plot(signal)
-          
-        canvas = FigureCanvasKivyAgg(plt.gcf())   
-        # adding plot to kivy boxlayout
+        ig = MatPlot()
+        canvas = ig.graph_internal(10)       
         self.ids.box.add_widget(canvas)
         #layout.add_widget(canvas) 
     

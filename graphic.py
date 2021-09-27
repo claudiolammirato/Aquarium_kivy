@@ -1,19 +1,17 @@
+from kivy.config import Config
+
+Config.set('graphics', 'width', '1024')
+Config.set('graphics', 'height', '600')
+
+
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock
 from datetime import datetime
 from sqlite_database import SQL_Database
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.config import Config
 
-Config.set('graphics', 'width', '1024')
-Config.set('graphics', 'height', '600')
-
-from matplotlib import pyplot as plt
-import numpy as np
-from kivy.garden.matplotlib import FigureCanvasKivyAgg
 from plot_graph import MatPlot
-
 
 
 class SettingScreen(Screen):
@@ -21,10 +19,12 @@ class SettingScreen(Screen):
 
 class GraphScreen(Screen):
     def __init__(self, **kwargs):
+
         super(GraphScreen, self).__init__(**kwargs)
         layout = BoxLayout(orientation ='vertical')
         self.add_widget(layout)
         ig = MatPlot()
+        print(self.ids.btn.text)
         canvas = ig.graph_internal(10)       
         self.ids.box.add_widget(canvas)
         #layout.add_widget(canvas) 

@@ -17,3 +17,37 @@
             on_press:
                 root.manager.transition.direction = 'right'
                 root.manager.current = 'menu'
+
+    BoxLayout:
+        size_hint: None, None
+        size: 100, 100
+        pos: 500, 200
+        Button:
+            id: btn
+            text: "Press me !!"
+            size_hint: None, None
+            on_parent: drop_content.dismiss()
+            on_release: drop_content.open(self)
+
+        DropDown:
+            id: drop_content
+            on_select: btn.text = '{}'.format(args[1])
+
+            Button:
+                id: btn1
+                text: 'First Item'
+                size_hint_y: None
+                height: 35
+                on_release: drop_content.select('First Item')
+
+            Label:
+                text:"Drop2"
+                size_hint_y: None
+                height: 44
+
+            Button:
+                id: btn3
+                text: 'Third Item'
+                size_hint_y: None
+                height: 35
+                on_release: drop_content.select('Third Item')

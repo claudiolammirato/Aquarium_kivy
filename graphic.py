@@ -28,11 +28,12 @@ class GraphScreen(Screen):
     def update_graph(self):
         self.ids.box.clear_widgets()
         number = self.ids.btn.text
+        num= number.split()
         try:
             #print(number)
             ig = MatPlot()
             #print(self.ids.btn.text)
-            canvas = ig.graph_internal(int(number))
+            canvas = ig.graph_internal(int(num[1]))
         except:
             #print(number)
             ig = MatPlot()

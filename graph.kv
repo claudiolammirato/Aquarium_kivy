@@ -20,18 +20,16 @@
 
     BoxLayout:
         size_hint: None, None
-        size: 100, 100
-        pos: 500, 200
+        size: 200, 50
+        pos: 704, 10
         Button:
             id: btn_refresh
             text: "Refresh"
-            size_hint: None, None
             on_press: root.update_graph()
             
         Button:
             id: btn
             text: "Select Period"
-            size_hint: None, None
             on_parent: drop_content.dismiss()
             on_release: drop_content.open(self)
 
@@ -44,7 +42,7 @@
                 text: ' points 2'
                 size_hint_y: None
                 height: 35
-                on_release: drop_content.select('2')
+                on_release: drop_content.select('points 2')
 
             Label:
                 text:"Drop2"
@@ -56,4 +54,4 @@
                 text: 'points 10'
                 size_hint_y: None
                 height: 35
-                on_release: drop_content.select('10')
+                on_release: drop_content.select('points 10')

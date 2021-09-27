@@ -23,12 +23,18 @@ class GraphScreen(Screen):
         super(GraphScreen, self).__init__(**kwargs)
         layout = BoxLayout(orientation ='vertical')
         self.add_widget(layout)
-        ig = MatPlot()
-        print(self.ids.btn.text)
-        canvas = ig.graph_internal(10)       
-        self.ids.box.add_widget(canvas)
-        #layout.add_widget(canvas) 
+        self.update_graph()
     
+    def update_graph(self):
+        self.ids.box.clear_widgets()
+        number = self.ids.btn.text
+        #print(number)
+        ig = MatPlot()
+        #print(self.ids.btn.text)
+        canvas = ig.graph_internal(int(number))       
+        self.ids.box.add_widget(canvas)
+
+   
 
 class MainWidget(Screen):
     def __init__(self, **kwargs):

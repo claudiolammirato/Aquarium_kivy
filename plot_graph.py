@@ -14,7 +14,7 @@ class MatPlot:
             database = SQL_Database('test.db')
 
             data_int = database.get("sensors_int", ("temp_int, date_int"))
-            print (data_int[0])
+            #print (data_int[0])
             for data in data_int:
                 #print (data)
                 xx = datetime.datetime.fromtimestamp(data[1])
@@ -22,9 +22,9 @@ class MatPlot:
                 if (data[0] != -1000):
                     self.x.append(xx)
                     self.y.append(data[0])
-
-            print(self.x[-elements:])  
-            print(self.y[-elements:]) 
+            plt.figure().clear()
+            #print(self.x[-elements:])  
+            #print(self.y[-elements:]) 
             # this will plot the signal on graph
             plt.plot(self.x[-elements:], self.y[-elements:])
             

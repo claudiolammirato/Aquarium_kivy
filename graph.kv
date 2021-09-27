@@ -23,8 +23,14 @@
         size: 100, 100
         pos: 500, 200
         Button:
+            id: btn_refresh
+            text: "Refresh"
+            size_hint: None, None
+            on_press: root.update_graph()
+            
+        Button:
             id: btn
-            text: "Press me !!"
+            text: "10"
             size_hint: None, None
             on_parent: drop_content.dismiss()
             on_release: drop_content.open(self)
@@ -35,10 +41,10 @@
 
             Button:
                 id: btn1
-                text: 'First Item'
+                text: ' points 2'
                 size_hint_y: None
                 height: 35
-                on_release: drop_content.select('First Item')
+                on_release: drop_content.select('2')
 
             Label:
                 text:"Drop2"
@@ -47,7 +53,7 @@
 
             Button:
                 id: btn3
-                text: 'Third Item'
+                text: 'points 10'
                 size_hint_y: None
                 height: 35
-                on_release: drop_content.select('Third Item')
+                on_release: drop_content.select('10')

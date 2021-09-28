@@ -3,7 +3,7 @@ from kivy.config import Config
 Config.set('graphics', 'width', '1024')
 Config.set('graphics', 'height', '600')
 #show keyboard on text input
-Config.set('kivy', 'keyboard_mode', 'systemandmulti')
+Config.set('kivy', 'keyboard_mode', 'systemanddock')
 
 
 from kivy.app import App
@@ -14,15 +14,26 @@ from sqlite_database import SQL_Database
 from kivy.uix.screenmanager import ScreenManager, Screen
 from plot_graph import MatPlot
 from settings import Aq_Settings
-from kivy.uix.vkeyboard import VKeyboard
-
 
 class SettingScreen(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super(SettingScreen, self).__init__(**kwargs)
+        username_input = Aq_Settings.read_settings('User_info', 'username')
+        self.ids.username_input.text = str(username_input)
+
+    def update_settings(self):
+        username_input = Aq_Settings.read_settings('User_info', 'username')
+        self.ids.username_input.text = str(username_input)
+
+
+    def save_settings(self):
+        username = self.ids.username_input.text
+        print(username)
+        Aq_Settings.write_settings('User_info', 'username', username)
+        #print("save")
 
 class GraphScreen(Screen):
     def __init__(self, **kwargs):
-
         super(GraphScreen, self).__init__(**kwargs)
         layout = BoxLayout(orientation ='vertical')
         self.add_widget(layout)
@@ -44,8 +55,6 @@ class GraphScreen(Screen):
             canvas = ig.graph_internal(10)
         self.ids.box.add_widget(canvas)
 
-   
-
 class MainWidget(Screen):
     def __init__(self, **kwargs):
         super(MainWidget, self).__init__(**kwargs)
@@ -57,8 +66,7 @@ class MainWidget(Screen):
 
     def on_start(self, *args):
         self.ids.username.text = str(Aq_Settings.read_settings('User_info', 'username'))
-        
-    
+           
     def update_sensors(self, nap):
         #Data Extraction from Database
         database = SQL_Database('test.db')
@@ -89,11 +97,9 @@ class MainWidget(Screen):
     def update_time(self, nap):
         now = datetime.now()
         self.ids.time.text = now.strftime('%H:%M:%S')
-    
+
 class AquariumApp(App):
     def build(self):
-
-        
         # Create the screen manager
         sm = ScreenManager()
         sm.add_widget(MainWidget(name='menu'))

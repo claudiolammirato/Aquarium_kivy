@@ -2,6 +2,8 @@ from kivy.config import Config
 
 Config.set('graphics', 'width', '1024')
 Config.set('graphics', 'height', '600')
+#show keyboard on text input
+Config.set('kivy', 'keyboard_mode', 'systemandmulti')
 
 
 from kivy.app import App
@@ -10,8 +12,9 @@ from kivy.clock import Clock
 from datetime import datetime
 from sqlite_database import SQL_Database
 from kivy.uix.screenmanager import ScreenManager, Screen
-
 from plot_graph import MatPlot
+from settings import Aq_Settings
+from kivy.uix.vkeyboard import VKeyboard
 
 
 class SettingScreen(Screen):
@@ -46,9 +49,15 @@ class GraphScreen(Screen):
 class MainWidget(Screen):
     def __init__(self, **kwargs):
         super(MainWidget, self).__init__(**kwargs)
+        
         Clock.schedule_once(self.update_sensors, 1)
         Clock.schedule_interval(self.update_sensors, 10) 
-        Clock.schedule_interval(self.update_time, 1)      
+        Clock.schedule_interval(self.update_time, 1)
+        Clock.schedule_once(self.on_start)
+
+    def on_start(self, *args):
+        self.ids.username.text = str(Aq_Settings.read_settings('User_info', 'username'))
+        
     
     def update_sensors(self, nap):
         #Data Extraction from Database

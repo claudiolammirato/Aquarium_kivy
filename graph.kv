@@ -22,6 +22,7 @@
         size_hint: None, None
         size: 200, 50
         pos: 704, 10
+        __safe_id: [drop_content.__self__]
         Button:
             id: btn_refresh
             text: "Refresh"
@@ -30,9 +31,9 @@
         Button:
             id: btn
             text: "Select Period"
-            on_parent: drop_content.dismiss()
             on_release: drop_content.open(self)
-
+            on_parent: drop_content.dismiss()
+        
         DropDown:
             id: drop_content
             on_select: btn.text = '{}'.format(args[1])

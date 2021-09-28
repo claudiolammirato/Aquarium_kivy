@@ -1,13 +1,23 @@
 #:kivy 2.0
 
 <SettingScreen>:
-    BoxLayout:
-        id: settings_button
+    TextInput:
+        id: username
+        size_hint: None, None
+        size: 100, 50
+        pos: 500, 500
+
+    Button:
+        text: 'Save'
+        size_hint: None, None
+        size: 100, 50
+        pos: 804, 10
+
+    Button:
+        text: 'Back to menu'
         size_hint: None, None
         size: 100, 50
         pos: 914, 10
-        Button:
-            text: 'Back to menu'
-            on_press:
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'menu'
+        on_press:
+            root.manager.transition.direction = 'right'
+            root.manager.current = 'menu'

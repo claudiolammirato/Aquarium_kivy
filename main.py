@@ -4,7 +4,7 @@ import threading
 import traceback
 from ds18_sensor import DS18B20
 from dht_sensor import DHT
-import time
+import time, os
 
 def check_database():
     print('check database')
@@ -38,7 +38,7 @@ def main():
     #p1 = threading.Thread(target=sensor_internal.run())
     #p1.start()
 
-    #sensor_external = DHT()
+    sensor_external = DHT()
     #p2 = threading.Thread(target=sensor_external.run())
     #p2.start()
 
@@ -46,6 +46,6 @@ def main():
     p3 = threading.Thread(target=AquariumApp().run())
     p3.start()
 
-
+   
 if __name__ == "__main__":
     main()

@@ -107,8 +107,3 @@ class AquariumApp(App):
         sm.add_widget(GraphScreen(name='graphs'))
 
         return sm
-        
-
-
-
-

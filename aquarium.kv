@@ -28,12 +28,18 @@ MainWidget:
     Label:
         text: 'Aquarium Temperature:'
         bold: True
-        pos: -400, 200
+        pos: 10, 200
+        text_size:self.size
+        halign: "left"
+        valign: "middle"
     Label:
         id: temp_int
         text: 'N/A°C'
         bold: True
-        pos: -250, 200
+        pos: 180, 200
+        text_size:self.size
+        halign: "left"
+        valign: "middle"
     Label:
         id: date_int
         text: 'N/A'
@@ -44,21 +50,33 @@ MainWidget:
     Label:
         text: 'External Temperature:'
         bold: True
-        pos: -400, 170
+        pos: 10, 170
+        text_size:self.size
+        halign: "left"
+        valign: "middle"
     Label:
         text: 'External Humidity:'
         bold: True
-        pos: -400, 140
+        pos: 10, 140
+        text_size:self.size
+        halign: "left"
+        valign: "middle"
     Label:
         id: temp_ext
         text: 'N/A°C'
         bold: True
-        pos: -250, 170
+        pos: 180, 170
+        text_size:self.size
+        halign: "left"
+        valign: "middle"
     Label:
         id: hum_ext
         text: 'N/A%'
         bold: True
-        pos: -250, 140
+        pos: 180, 140
+        text_size:self.size
+        halign: "left"
+        valign: "middle"
     Label:
         id: date_ext
         text: 'N/A'

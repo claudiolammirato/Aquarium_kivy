@@ -5,7 +5,7 @@ from settings import Aq_Settings
 
 class SendEmail:
 
-    def email_error():
+    def email_error(type):
         try:
             sender_email = Aq_Settings.read_settings('User_info', 'email')
             receiver_email = Aq_Settings.read_settings('User_info', 'email')
@@ -15,22 +15,25 @@ class SendEmail:
             message["Subject"] = "Aquarium External Sensor Error"
             message["From"] = sender_email
             message["To"] = receiver_email
-
+            if(type==1):
+                error="internal"
+            elif(type==0):
+                error="external"
             # Create the plain-text and HTML version of your message
             text = """\
             Hi,
-            Your external Sensor is not working.
-            Please check the connections"""
+            Your %s Sensor is not working.
+            Please check the connections"""% (error,)
             html = """\
             <html>
             <body>
                 <p>Hi,<br>
-                Your external Sensor is not working.<br>
+                Your %s Sensor is not working.<br>
                 Please check the connections
                 </p>
             </body>
             </html>
-            """
+            """% (error,)
 
             # Turn these into plain/html MIMEText objects
             part1 = MIMEText(text, "plain")
@@ -52,7 +55,7 @@ class SendEmail:
         except:
             print("Email Error")
 
-    def email_temp_error(temp):
+    def email_temp_error(temp, type):
         try:
             sender_email = Aq_Settings.read_settings('User_info', 'email')
             receiver_email = Aq_Settings.read_settings('User_info', 'email')
@@ -62,21 +65,24 @@ class SendEmail:
             message["Subject"] = "Aquarium External Sensor Error"
             message["From"] = sender_email
             message["To"] = receiver_email
-
+            if(type==1):
+                error="internal"
+            elif(type==0):
+                error="external"
             # Create the plain-text and HTML version of your message
             text = """\
             Hi,
-            Your external Temperature is %s°C."""% (temp,)
+            Your %s Temperature is %s°C."""% (error,temp,)
             html = """\
             <html>
             <body>
                 <p>Hi,<br>
-                Your external Temperature is %s°C.<br>
+                Your %s Temperature is %s°C.<br>
                 
                 </p>
             </body>
             </html>
-            """ % (temp,)
+            """ % (error,temp,)
 
             # Turn these into plain/html MIMEText objects
             part1 = MIMEText(text, "plain")

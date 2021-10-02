@@ -3,6 +3,8 @@ import glob
 import time
 from sqlite_database import SQL_Database
 import threading
+from send_email import SendEmail
+
 
 #these tow lines mount the device:
 #os.system('modprobe w1-gpio')
@@ -17,6 +19,8 @@ class DS18B20:
         self.sensor_name = []
         self.temps = []
         self.log = []
+        self.ALARM = 0
+        self.ERROR = 0
 
     def find_sensors(self):
         self.sensor_path = glob.glob(self.base_dir)
@@ -47,12 +51,22 @@ class DS18B20:
                     datab.write('sensors_int','temp_int, date_int',str(self.log[0][2])+','+str(tstamp))
                     datab.close()
             print('Temperature retrieved')
+            if ((self.log[0][2] < 24 or self.log[0][2] > 30) and self.ALARM == 0):
+                SendEmail.email_temp_error(self.log[0][2],1)
+                self.ALARM = 1
+            elif(self.log[0][2] > 24 or self.log[0][2] < 30):
+                self.ALARM = 0
+            self.ERROR = 0
+            
         else:
             datab = SQL_Database()
             datab.open('test.db')
             datab.write('sensors_int','temp_int, date_int','-1000,'+str(time.time()))
             datab.close()
             print('Internal Sensor Error!!!')
+            if (self.ERROR == 0):
+                SendEmail.email_error(1)
+                self.ERROR = 1
                       
     
     def print_temps(self):
@@ -69,4 +83,5 @@ class DS18B20:
         self.read_temp()
          #self.print_temps()
         self.clear_log()
+        
         t = threading.Timer(60*30, self.run).start()

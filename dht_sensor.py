@@ -31,7 +31,7 @@ class DHT:
                 print("Failed to retrieve data from humidity sensor")
                 #return error
             if ((temperature < 15 or temperature > 30) and self.ALARM == 0):
-                SendEmail.email_temp_error(temperature)
+                SendEmail.email_temp_error(temperature,0)
                 self.ALARM = 1
             elif(temperature > 15 or temperature < 30):
                 self.ALARM = 0
@@ -45,7 +45,7 @@ class DHT:
             datab.close()
             print('External Sensor Error!!!')
             if (self.ERROR == 0):
-                SendEmail.email_error()
+                SendEmail.email_error(0)
                 self.ERROR = 1
             
             t = threading.Timer(60, self.run).start()

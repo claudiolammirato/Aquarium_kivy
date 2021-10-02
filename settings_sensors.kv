@@ -12,7 +12,11 @@
                     with_previous: False
                     ActionButton:
                         text: 'User Settings'
-                        on_release: root.manager.current = 'settings'                
+                        on_release: root.manager.current = 'settings'  
+                    ActionButton:
+                        text: 'Sensor Settings'
+                        on_release: root.manager.current = 'settings_sensors' 
+                                 
 
     Label:
         id: username

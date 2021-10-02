@@ -72,12 +72,12 @@ class GraphScreen(Screen):
             #print(number)
             ig = MatPlot()
             #print(self.ids.btn.text)
-            canvas = ig.graph_internal(int(num[1]))
+            canvas = ig.graph_internal(int(num[0])*2)
         except:
             #print(number)
             ig = MatPlot()
             #print(self.ids.btn.text)
-            canvas = ig.graph_internal(10)
+            canvas = ig.graph_internal(16)
         self.ids.box.add_widget(canvas)
 
 class MainWidget(Screen):

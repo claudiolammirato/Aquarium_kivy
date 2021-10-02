@@ -27,6 +27,10 @@ class MatPlot:
             plt.figure().clear()
             plt.ylim(20,31)
             plt.title("Aquarium Temperature °C")
+            for xy in zip(self.x[-elements:], self.y[-elements:]):
+                #plt.annotate('(%s, %s)' % xy, xy=xy, textcoords='data')
+                plt.annotate('%s' % round(xy[1],1), xy=xy, textcoords='data')
+                
 
             #print(self.x[-elements:])  
             #print(self.y[-elements:]) 

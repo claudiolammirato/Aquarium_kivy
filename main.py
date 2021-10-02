@@ -25,13 +25,13 @@ def check_database():
         #print('error')
 
 def main():
-
+    
     #check if Database is ok!!
     p0 = threading.Thread(target = check_database())
     p0.start()
     p0.join()
     #check_database()
-
+    '''
     #THREADING SECTION
     #Sensor Section
     sensor_internal = DS18B20()
@@ -41,7 +41,7 @@ def main():
     sensor_external = DHT()
     p2 = threading.Thread(target=sensor_external.run())
     p2.start()
-
+    '''
     #Graphic Section - HAS TO BE LAST!!!!
     p3 = threading.Thread(target=AquariumApp().run())
     p3.start()

@@ -1,15 +1,15 @@
 from kivy.config import Config
-
+'''
 #Raspberry settings
 Config.set('graphics', 'fullscreen', 'auto')
 Config.set('graphics', 'window_state', 'maximized')
 Config.set('graphics','show_cursor','0')
+'''
 
-"""
 #Windows Settings
 Config.set('graphics', 'width', '1024')
 Config.set('graphics', 'height', '600')
-"""
+
 
 
 #show keyboard on text input and hide mouse

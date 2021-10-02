@@ -54,7 +54,6 @@ class SettingScreen(Screen):
         Aq_Settings.write_settings('User_info', 'password', password)
         #print("save")
 
-
 class Settings_Sensors(Screen):
     pass
 

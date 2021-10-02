@@ -46,6 +46,9 @@ class SettingScreen(Screen):
         Aq_Settings.write_settings('User_info', 'email', email)
         #print("save")
 
+class Settings_Sensors(Screen):
+    pass
+
 class GraphScreen(Screen):
     def __init__(self, **kwargs):
         super(GraphScreen, self).__init__(**kwargs)
@@ -119,5 +122,6 @@ class AquariumApp(App):
         sm.add_widget(MainWidget(name='menu'))
         sm.add_widget(SettingScreen(name='settings'))
         sm.add_widget(GraphScreen(name='graphs'))
+        sm.add_widget(Settings_Sensors(name='settings_sensors'))
 
         return sm

@@ -4,15 +4,19 @@ from send_email import SendEmail
 
 
 class DHT:
+    def __init__(self):
+        self.ERROR = 0
+        self.ALARM = 0
     def run(self):
-
+        
         try:
             import Adafruit_DHT
             import threading
             
             DHT_SENSOR = Adafruit_DHT.DHT22
             DHT_PIN = 17
-            ALARM = 0
+            
+            
 
                       
             humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
@@ -26,12 +30,12 @@ class DHT:
             else:
                 print("Failed to retrieve data from humidity sensor")
                 #return error
-            if ((temperature < 15 or temperature > 30) and ALARM == 0):
-                SendEmail.email()
-                ALARM = 1
+            if ((temperature < 15 or temperature > 30) and self.ALARM == 0):
+                SendEmail.email_temp_error(temperature)
+                self.ALARM = 1
             elif(temperature > 15 or temperature < 30):
-                ALARM = 0
-
+                self.ALARM = 0
+            self.ERROR = 0
             t = threading.Timer(60*30, self.run).start()
         except:
             import threading
@@ -40,5 +44,9 @@ class DHT:
             datab.write('sensors_ext','temp_ext,hum_ext, date_ext','-1000, -1000,'+ str(time.time()))
             datab.close()
             print('External Sensor Error!!!')
+            if (self.ERROR == 0):
+                SendEmail.email_error()
+                self.ERROR = 1
+            
             t = threading.Timer(60, self.run).start()
 

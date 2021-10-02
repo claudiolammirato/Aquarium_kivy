@@ -1,6 +1,6 @@
 #:kivy 2.0
 
-<SettingScreen>:
+<Settings_Sensors>:
     BoxLayout:
         orientation:"vertical"
         pos: 0, 550
@@ -8,11 +8,11 @@
             ActionView:
                 use_separator: True
                 ActionPrevious:
-                    title: 'User Settings'
+                    title: 'Sensor Settings'
                     with_previous: False
                     ActionButton:
-                        text: 'Sensor Settings'
-                        on_release: root.manager.current = 'settings_sensors'                
+                        text: 'User Settings'
+                        on_release: root.manager.current = 'settings'                
 
     Label:
         id: username
@@ -28,21 +28,7 @@
         size_hint: None, None
         size: 250, 30
         pos: 150, 500
-    Label:
-        id: email
-        text: 'Email: '
-        text_size:self.size
-        halign: "left"
-        valign: "middle"
-        size_hint: None, None
-        size: 100, 30
-        pos: 10, 470
-    TextInput:
-        id: email_input
-        size_hint: None, None
-        size: 250, 30
-        pos: 150, 470
-
+    
     Button:
         text: 'Save'
         size_hint: None, None

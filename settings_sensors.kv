@@ -8,14 +8,15 @@
             ActionView:
                 use_separator: True
                 ActionPrevious:
-                    title: 'Sensor Settings'
+                    app_icon: 'images/fish.png'
+                    title: 'User Settings'
                     with_previous: False
-                    ActionButton:
-                        text: 'User Settings'
-                        on_release: root.manager.current = 'settings'  
-                    ActionButton:
-                        text: 'Sensor Settings'
-                        on_release: root.manager.current = 'settings_sensors' 
+                ActionButton:
+                    text: 'User Settings'
+                    on_release: root.manager.current = 'settings'  
+                ActionButton:
+                    text: 'Sensor Settings'
+                    on_release: root.manager.current = 'settings_sensors' 
                                  
 
     Label:

@@ -14,8 +14,22 @@
     TextInput:
         id: username_input
         size_hint: None, None
+        size: 250, 30
+        pos: 150, 550
+    Label:
+        id: email
+        text: 'Email: '
+        text_size:self.size
+        halign: "left"
+        valign: "middle"
+        size_hint: None, None
         size: 100, 30
-        pos: 200, 550
+        pos: 10, 520
+    TextInput:
+        id: email_input
+        size_hint: None, None
+        size: 250, 30
+        pos: 150, 520
 
     Button:
         text: 'Save'

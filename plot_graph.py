@@ -18,11 +18,20 @@ class MatPlot:
             for data in data_int:
                 #print (data)
                 xx = datetime.datetime.fromtimestamp(data[1])
-                xx = xx.strftime('%Y-%m-%d %H:%M:%S')
+                #xx = xx.strftime('%Y-%m-%d %H:%M:%S')
+                xx = xx.strftime('%H:%M')
                 if (data[0] != -1000):
                     self.x.append(xx)
                     self.y.append(data[0])
+            
             plt.figure().clear()
+            plt.ylim(20,31)
+            plt.title("Aquarium Temperature °C")
+            for xy in zip(self.x[-elements:], self.y[-elements:]):
+                #plt.annotate('(%s, %s)' % xy, xy=xy, textcoords='data')
+                plt.annotate('%s' % round(xy[1],1), xy=xy, textcoords='data')
+                
+
             #print(self.x[-elements:])  
             #print(self.y[-elements:]) 
             # this will plot the signal on graph

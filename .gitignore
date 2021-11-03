@@ -1,3 +1,4 @@
 env
 test.db
 settings.ini
+__pycache__

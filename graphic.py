@@ -1,10 +1,18 @@
 from kivy.config import Config
+<<<<<<< HEAD
 """
+=======
+'''
+>>>>>>> 4d2827040ed40a27bccddf1f8ca6023855c2d6c5
 #Raspberry settings
 Config.set('graphics', 'fullscreen', 'auto')
 Config.set('graphics', 'window_state', 'maximized')
 Config.set('graphics','show_cursor','0')
+<<<<<<< HEAD
 """
+=======
+'''
+>>>>>>> 4d2827040ed40a27bccddf1f8ca6023855c2d6c5
 
 #Windows Settings
 Config.set('graphics', 'width', '1024')
@@ -32,20 +40,26 @@ class SettingScreen(Screen):
         self.ids.username_input.text = str(username_input)
         email_input = Aq_Settings.read_settings('User_info', 'email')
         self.ids.email_input.text = str(email_input)
+        password_input = Aq_Settings.read_settings('User_info', 'password')
+        self.ids.password_input.text = str(password_input)
 
     def update_settings(self):
         username_input = Aq_Settings.read_settings('User_info', 'username')
         self.ids.username_input.text = str(username_input)
         email_input = Aq_Settings.read_settings('User_info', 'email')
         self.ids.email_input.text = str(email_input)
+        password_input = Aq_Settings.read_settings('User_info', 'password')
+        self.ids.password_input.text = str(password_input)
 
 
     def save_settings(self):
         username = self.ids.username_input.text
         email = self.ids.email_input.text
-        print(username)
+        password = self.ids.password_input.text
+        #print(username)
         Aq_Settings.write_settings('User_info', 'username', username)
         Aq_Settings.write_settings('User_info', 'email', email)
+        Aq_Settings.write_settings('User_info', 'password', password)
         #print("save")
 
 class Settings_Sensors(Screen):
@@ -66,12 +80,12 @@ class GraphScreen(Screen):
             #print(number)
             ig = MatPlot()
             #print(self.ids.btn.text)
-            canvas = ig.graph_internal(int(num[1]))
+            canvas = ig.graph_internal(int(num[0])*2)
         except:
             #print(number)
             ig = MatPlot()
             #print(self.ids.btn.text)
-            canvas = ig.graph_internal(10)
+            canvas = ig.graph_internal(16)
         self.ids.box.add_widget(canvas)
 
 class MainWidget(Screen):

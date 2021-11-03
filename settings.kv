@@ -8,14 +8,15 @@
             ActionView:
                 use_separator: True
                 ActionPrevious:
+                    app_icon: 'images/fish.png'
                     title: 'User Settings'
                     with_previous: False
-                    ActionButton:
-                        text: 'User Settings'
-                        on_release: root.manager.current = 'settings'  
-                    ActionButton:
-                        text: 'Sensor Settings'
-                        on_release: root.manager.current = 'settings_sensors'            
+                ActionButton:
+                    text: 'User Settings'
+                    on_release: root.manager.current = 'settings'  
+                ActionButton:
+                    text: 'Sensor Settings'
+                    on_release: root.manager.current = 'settings_sensors'            
 
     Label:
         id: username
@@ -45,6 +46,21 @@
         size_hint: None, None
         size: 250, 30
         pos: 150, 470
+    Label:
+        id: password
+        text: 'Password: '
+        text_size:self.size
+        halign: "left"
+        valign: "middle"
+        size_hint: None, None
+        size: 100, 30
+        pos: 10, 440
+    TextInput:
+        id: password_input
+        password: True
+        size_hint: None, None
+        size: 250, 30
+        pos: 150, 440
 
     Button:
         text: 'Save'

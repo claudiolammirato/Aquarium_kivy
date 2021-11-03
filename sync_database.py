@@ -19,7 +19,8 @@ class SyncDatabase:
         self.query = ''
 
 
-    def database_sync(self):   
+    def database_sync(self):
+        rowsline = self.read_database()
         new_name_query = ''    
         item_row=''
         update_name=''
@@ -63,7 +64,7 @@ class SyncDatabase:
 
             new_name_query = new_name_query[:len(new_name_query)-1]
 
-            for row in rows:
+            for row in rows[rowsline:]:
                 for item in row:
                     #print (item)
                     item = str(item)
@@ -96,7 +97,23 @@ class SyncDatabase:
                 self.con_mysql.commit()
             new_name_query=''
             
+    def read_database(self):
+        self.cur.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        tables = self.cur.fetchall()
+        rows = []
+        tavola = []
+        
+        for table in tables:
+            self.cursor.execute("SELECT * FROM {0};".format(table[0]))
             
+            for row in self.cursor:
+                #print(row)
+                rows.append(row)
+            #print(rows[len(rows)-1][0])
+            tavola.append(rows[len(rows)-1][0])
+            
+        print(min(tavola))
+        return min(tavola)  
         
             
             
@@ -105,3 +122,4 @@ class SyncDatabase:
 data = SyncDatabase()
 
 data.database_sync()
+#data.read_database()

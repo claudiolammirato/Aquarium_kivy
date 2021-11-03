@@ -43,11 +43,7 @@ def main():
     #p2 = threading.Thread(target=sensor_external.run())
     #p2.start()
 
-=======
-    p2 = threading.Thread(target=sensor_external.run())
-    p2.start()
-    '''
->>>>>>> 4d2827040ed40a27bccddf1f8ca6023855c2d6c5
+'''
     #Graphic Section - HAS TO BE LAST!!!!
     p3 = threading.Thread(target=AquariumApp().run())
     p3.start()

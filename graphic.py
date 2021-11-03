@@ -1,18 +1,11 @@
 from kivy.config import Config
-<<<<<<< HEAD
 """
-=======
-'''
->>>>>>> 4d2827040ed40a27bccddf1f8ca6023855c2d6c5
 #Raspberry settings
 Config.set('graphics', 'fullscreen', 'auto')
 Config.set('graphics', 'window_state', 'maximized')
 Config.set('graphics','show_cursor','0')
 <<<<<<< HEAD
 """
-=======
-'''
->>>>>>> 4d2827040ed40a27bccddf1f8ca6023855c2d6c5
 
 #Windows Settings
 Config.set('graphics', 'width', '1024')

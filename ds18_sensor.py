@@ -68,9 +68,11 @@ class DS18B20:
             datab.write('sensors_int','temp_int, date_int','-1000,'+str(time.time()))
             datab.close()
             print('Internal Sensor Error!!!')
-            if (self.ERROR == 0):
-                SendEmail.email_error(1)
-                self.ERROR = 1
+            email_alert = Aq_Settings.read_settings('User_info', 'email_alert')
+            if (email_alert == "True"):
+                if (self.ERROR == 0):
+                    SendEmail.email_error(1)
+                    self.ERROR = 1
                       
     
     def print_temps(self):

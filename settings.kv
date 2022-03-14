@@ -1,4 +1,6 @@
 #:kivy 2.0
+#:import isdir os.path.isdir
+#:set fish 'images/fish.png'
 
 <SettingScreen>:
     BoxLayout:
@@ -8,7 +10,7 @@
             ActionView:
                 use_separator: True
                 ActionPrevious:
-                    app_icon: 'images/fish.png'
+                    app_icon: fish
                     title: 'User Settings'
                     with_previous: False
                 ActionButton:

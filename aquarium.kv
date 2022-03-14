@@ -3,6 +3,8 @@
 #:include settings.kv
 #:include graph.kv
 #:include settings_sensors.kv
+#:import isdir os.path.isdir
+#:set clown_fish 'images/clown-fish.png'
 
 MainWidget: 
 
@@ -13,12 +15,12 @@ MainWidget:
         size_hint: None, None
         size:30,30
         pos: 550,565
-        source: 'images/clown-fish.png'
+        source: clown_fish
     Image:
         size_hint: None, None
         size:30,30
         pos: 442,565
-        source: 'images/clown-fish.png'
+        source: clown_fish
     Label:
         text: "Aquarium"
         bold: True

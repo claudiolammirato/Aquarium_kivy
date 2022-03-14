@@ -1,3 +1,4 @@
+import email
 from kivy.config import Config
 """
 #Raspberry settings
@@ -35,6 +36,11 @@ class SettingScreen(Screen):
         self.ids.email_input.text = str(email_input)
         password_input = Aq_Settings.read_settings('User_info', 'password')
         self.ids.password_input.text = str(password_input)
+        email_alert = Aq_Settings.read_settings('User_info', 'email_alert')
+        if (email_alert == "True"):
+            self.ids.email_alert.active = True
+        else:   
+            self.ids.email_alert.active = False
 
     def update_settings(self):
         username_input = Aq_Settings.read_settings('User_info', 'username')
@@ -43,16 +49,25 @@ class SettingScreen(Screen):
         self.ids.email_input.text = str(email_input)
         password_input = Aq_Settings.read_settings('User_info', 'password')
         self.ids.password_input.text = str(password_input)
+        email_alert = Aq_Settings.read_settings('User_info', 'email_alert')
+        if (email_alert == "True"):
+            self.ids.email_alert.active = True
+        else:   
+            self.ids.email_alert.active = False
+        
 
 
     def save_settings(self):
         username = self.ids.username_input.text
         email = self.ids.email_input.text
         password = self.ids.password_input.text
+        email_alert = self.ids.email_alert.active
+        #print(email_alert)
         #print(username)
         Aq_Settings.write_settings('User_info', 'username', username)
         Aq_Settings.write_settings('User_info', 'email', email)
         Aq_Settings.write_settings('User_info', 'password', password)
+        Aq_Settings.write_settings('User_info', 'email_alert', str(email_alert))
         #print("save")
 
 class Settings_Sensors(Screen):

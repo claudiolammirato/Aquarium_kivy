@@ -4,6 +4,8 @@ import time
 from sqlite_database import SQL_Database
 import threading
 from send_email import SendEmail
+from settings import Aq_Settings
+
 
 
 #these tow lines mount the device:
@@ -51,12 +53,14 @@ class DS18B20:
                     datab.write('sensors_int','temp_int, date_int',str(self.log[0][2])+','+str(tstamp))
                     datab.close()
             print('Temperature retrieved')
-            if ((self.log[0][2] < 24 or self.log[0][2] > 30) and self.ALARM == 0):
-                SendEmail.email_temp_error(self.log[0][2],1)
-                self.ALARM = 1
-            elif(self.log[0][2] > 24 or self.log[0][2] < 30):
-                self.ALARM = 0
-            self.ERROR = 0
+            email_alert = Aq_Settings.read_settings('User_info', 'email_alert')
+            if (email_alert == "True"):
+                if ((self.log[0][2] < 24 or self.log[0][2] > 30) and self.ALARM == 0):
+                    SendEmail.email_temp_error(self.log[0][2],1)
+                    self.ALARM = 1
+                elif(self.log[0][2] > 24 or self.log[0][2] < 30):
+                    self.ALARM = 0
+                self.ERROR = 0
             
         else:
             datab = SQL_Database()

@@ -5,6 +5,8 @@
 #:include settings_sensors.kv
 #:import isdir os.path.isdir
 #:set clown_fish 'images/clown-fish.png'
+#:set semisfere 'images/path31.png'
+#:set arrow 'images/path925.png'
 
 MainWidget: 
 
@@ -37,6 +39,26 @@ MainWidget:
         font_size: 20
         pos: 450,280
 
+    Image:
+        source: semisfere
+        size_hint: None, None
+        size: 400, 400
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+    Image:
+        source: arrow
+        size_hint: None, None
+        size: 300, 300
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}   
+        # apply rotation matrix to this Image                                                                                                                                            
+        canvas.before:                                                                                                                                             
+            PushMatrix                                                                                                                                             
+            Rotate:                                                                                                                                                
+                angle: 20                                                                                                                                  
+                axis: (0, 0, 1)                                                                                                                                    
+                origin: (self.center_x, self.center_y - self.norm_image_size[1]/2, 0)                                                                                                                              
+        canvas.after:                                                                                                                                              
+            PopMatrix  
 
     Label:
         text: 'Aquarium Temperature:'

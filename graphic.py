@@ -26,6 +26,9 @@ from sqlite_database import SQL_Database
 from kivy.uix.screenmanager import ScreenManager, Screen
 from plot_graph import MatPlot
 from settings import Aq_Settings
+from kivy.animation import Animation
+from kivy.clock import Clock
+from kivy.lang import Builder
 
 class SettingScreen(Screen):
     def __init__(self, **kwargs):
@@ -137,7 +140,7 @@ class MainWidget(Screen):
 
     def update_time(self, nap):
         now = datetime.now()
-        self.ids.time.text = now.strftime('%H:%M:%S')
+        self.ids.time.text = now.strftime('%H:%M:%S') 
 
 class AquariumApp(App):
     def build(self):

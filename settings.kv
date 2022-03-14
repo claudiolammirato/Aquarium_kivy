@@ -34,6 +34,24 @@
         size_hint: None, None
         size: 250, 30
         pos: 150, 500
+    Widget:
+        size_hint: .6,.6
+        canvas:
+            Color:
+                rgba: 1, 1, 1, 0.5
+            Line:
+                rectangle: 5,335, 400, 150
+    Label:
+        id: email_settings
+        text: 'Email Settings'
+        text_size:self.size
+        halign: "left"
+        valign: "middle"
+        size_hint: None, None
+        size: 100, 30
+        pos: 160, 455   
+    
+    
     Label:
         id: email
         text: 'Email: '
@@ -42,12 +60,12 @@
         valign: "middle"
         size_hint: None, None
         size: 100, 30
-        pos: 10, 470
+        pos: 10, 420
     TextInput:
         id: email_input
         size_hint: None, None
         size: 250, 30
-        pos: 150, 470
+        pos: 150, 420
     Label:
         id: password
         text: 'Password: '
@@ -56,13 +74,13 @@
         valign: "middle"
         size_hint: None, None
         size: 100, 30
-        pos: 10, 440
+        pos: 10, 380
     TextInput:
         id: password_input
         password: True
         size_hint: None, None
         size: 250, 30
-        pos: 150, 440
+        pos: 150, 380
     Label:
         id: lab
         text: "Email Alert"
@@ -72,10 +90,10 @@
         valign: "middle"
         size_hint: None, None
         size: 100, 30
-        pos: 10, 410
+        pos: 10, 340
     CheckBox:
         id: email_alert
-        pos: -350, 125
+        pos: -350, 57
 
     Button:
         text: 'Save'

@@ -6,8 +6,6 @@ import threading
 from send_email import SendEmail
 from settings import Aq_Settings
 
-
-
 #these tow lines mount the device:
 #os.system('modprobe w1-gpio')
 #os.system('modprobe w1-therm')

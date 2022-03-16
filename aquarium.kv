@@ -46,6 +46,10 @@ MainWidget:
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
 
     Image:
+        id: arrow
+        name: 'arrow'
+        angle: 90
+
         source: arrow
         size_hint: None, None
         size: 300, 300
@@ -54,7 +58,7 @@ MainWidget:
         canvas.before:                                                                                                                                             
             PushMatrix                                                                                                                                             
             Rotate:                                                                                                                                                
-                angle: 20                                                                                                                                  
+                angle: self.angle                                                                                                                                  
                 axis: (0, 0, 1)                                                                                                                                    
                 origin: (self.center_x, self.center_y - self.norm_image_size[1]/2, 0)                                                                                                                              
         canvas.after:                                                                                                                                              

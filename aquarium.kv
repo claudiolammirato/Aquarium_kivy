@@ -5,8 +5,12 @@
 #:include settings_sensors.kv
 #:import isdir os.path.isdir
 #:set clown_fish 'images/clown-fish.png'
-#:set semisfere 'images/path31.png'
-#:set arrow 'images/path925.png'
+#:set semisfere 'images/scala.png'
+#:set arrow 'images/lancetta.png'
+#:set xcenter 25
+#:set ycenter 9
+#:set arrowx 70
+#:set arrowy 40
 
 MainWidget: 
 
@@ -42,25 +46,28 @@ MainWidget:
     Image:
         source: semisfere
         size_hint: None, None
-        size: 400, 400
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        size: 200, 200
+        #pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        pos: 300,300
 
     Image:
         id: arrow
         name: 'arrow'
-        angle: 90
+        angle: 120
 
         source: arrow
         size_hint: None, None
-        size: 300, 300
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}   
+        size: 90,90
+        pos: 300+arrowx,300+arrowy
+        #pos_hint: {'center_x': 0.5, 'center_y': 0.5}   
         # apply rotation matrix to this Image                                                                                                                                            
         canvas.before:                                                                                                                                             
             PushMatrix                                                                                                                                             
             Rotate:                                                                                                                                                
                 angle: self.angle                                                                                                                                  
-                axis: (0, 0, 1)                                                                                                                                    
-                origin: (self.center_x, self.center_y - self.norm_image_size[1]/2, 0)                                                                                                                              
+                axis: (0, 0, 1)
+                origin: 300+arrowx+xcenter,300+arrowy+ycenter                                                                                                                                    
+                #origin: (self.center_x - self.norm_image_size[0]/2, self.center_y - self.norm_image_size[1]/2, 0)                                                                                                                              
         canvas.after:                                                                                                                                              
             PopMatrix  
 

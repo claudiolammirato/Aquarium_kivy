@@ -110,8 +110,8 @@ class MainWidget(Screen):
 
     def on_start(self, *args):
         self.ids.username.text = str(Aq_Settings.read_settings('User_info', 'username'))
-        self.anim = Animation(angle=90.0) + Animation(angle=-70)
-        #self.anim.repeat = True    # repeat forever
+        self.anim = Animation(angle=120) + Animation(angle=-60)
+        self.anim.repeat = True    # repeat forever
         self.anim.start(self.ids.arrow)
 
            

@@ -1,18 +1,19 @@
 import email
 from kivy.config import Config
+from kivy.core.window import Window
+
 """
 #Raspberry settings
 Config.set('graphics', 'fullscreen', 'auto')
 Config.set('graphics', 'window_state', 'maximized')
 Config.set('graphics','show_cursor','0')
-<<<<<<< HEAD
 """
-
+'''
 #Windows Settings
 Config.set('graphics', 'width', '1024')
 Config.set('graphics', 'height', '600')
-
-
+'''
+Window.size = (1024, 600)
 
 #show keyboard on text input and hide mouse
 Config.set('kivy', 'keyboard_mode', 'systemanddock')
@@ -84,20 +85,28 @@ class GraphScreen(Screen):
         self.update_graph()
     
     def update_graph(self):
-        self.ids.box.clear_widgets()
+        self.ids.box1.clear_widgets()
+        self.ids.box2.clear_widgets()
         number = self.ids.btn.text
         num= number.split()
         try:
             #print(number)
-            ig = MatPlot()
+            ig_int = MatPlot()
             #print(self.ids.btn.text)
-            canvas = ig.graph_internal(int(num[0])*2)
+            canvas1 = ig_int.graph_internal(int(num[0])*2)
+            ig_ext = MatPlot()
+            #print(self.ids.btn.text)
+            canvas2 = ig_ext.graph_external(int(num[0])*2)
         except:
             #print(number)
-            ig = MatPlot()
+            ig_int = MatPlot()
             #print(self.ids.btn.text)
-            canvas = ig.graph_internal(16)
-        self.ids.box.add_widget(canvas)
+            canvas1 = ig_int.graph_internal(16)
+            ig_ext = MatPlot()
+            #print(self.ids.btn.text)
+            canvas2 = ig_ext.graph_external(16)
+        self.ids.box1.add_widget(canvas1)
+        self.ids.box2.add_widget(canvas2)
 
 class MainWidget(Screen):
     def __init__(self, **kwargs):

@@ -39,7 +39,6 @@ def main():
     #p1.start()
 
     sensor_external = DHT()
-<<<<<<< HEAD
     #p2 = threading.Thread(target=sensor_external.run())
     #p2.start()
 

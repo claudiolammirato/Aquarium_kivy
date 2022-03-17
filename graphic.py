@@ -85,8 +85,9 @@ class GraphScreen(Screen):
         self.update_graph()
     
     def update_graph(self):
-        self.ids.box1.clear_widgets()
-        self.ids.box2.clear_widgets()
+        self.ids.int_temp.clear_widgets()
+        self.ids.ext_temp.clear_widgets()
+        self.ids.ext_hum.clear_widgets()
         number = self.ids.btn.text
         num= number.split()
         try:
@@ -97,6 +98,9 @@ class GraphScreen(Screen):
             ig_ext = MatPlot()
             #print(self.ids.btn.text)
             canvas2 = ig_ext.graph_external(int(num[0])*2)
+            ig_ext_hum = MatPlot()
+            #print(self.ids.btn.text)
+            canvas3 = ig_ext_hum.graph_external_hum(int(num[0])*2)
         except:
             #print(number)
             ig_int = MatPlot()
@@ -105,8 +109,12 @@ class GraphScreen(Screen):
             ig_ext = MatPlot()
             #print(self.ids.btn.text)
             canvas2 = ig_ext.graph_external(16)
-        self.ids.box1.add_widget(canvas1)
-        self.ids.box2.add_widget(canvas2)
+            ig_ext_hum = MatPlot()
+            #print(self.ids.btn.text)
+            canvas3 = ig_ext_hum.graph_external_hum(16)
+        self.ids.int_temp.add_widget(canvas1)
+        self.ids.ext_temp.add_widget(canvas2)
+        self.ids.ext_hum.add_widget(canvas3)
 
 class MainWidget(Screen):
     def __init__(self, **kwargs):

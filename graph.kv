@@ -1,7 +1,12 @@
 #:kivy 2.0
               
 <GraphScreen>:
-
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
     BoxLayout:
         id: int_temp
         size_hint: None, None
@@ -16,7 +21,7 @@
         id: ext_hum
         size_hint: None, None
         size: 600, 190
-        pos: 10, 15
+        pos: 60, 15
 
     BoxLayout:
         size_hint: None, None

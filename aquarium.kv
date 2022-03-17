@@ -9,8 +9,8 @@
 #:set arrow 'images/lancetta.png'
 #:set xcenter 25
 #:set ycenter 9
-#:set arrowx 70
-#:set arrowy 40
+#:set arrowx 76
+#:set arrowy 45
 
 MainWidget: 
 
@@ -44,21 +44,22 @@ MainWidget:
         pos: 450,280
 
     Image:
+        id: graph_temp_int_sfere
         source: semisfere
         size_hint: None, None
         size: 200, 200
         #pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-        pos: 300,300
+        pos: 20,380
 
     Image:
-        id: arrow
+        id: graph_temp_int_arrow
         name: 'arrow'
         angle: 120
 
         source: arrow
         size_hint: None, None
         size: 90,90
-        pos: 300+arrowx,300+arrowy
+        pos: 20+arrowx,380+arrowy
         #pos_hint: {'center_x': 0.5, 'center_y': 0.5}   
         # apply rotation matrix to this Image                                                                                                                                            
         canvas.before:                                                                                                                                             
@@ -66,7 +67,7 @@ MainWidget:
             Rotate:                                                                                                                                                
                 angle: self.angle                                                                                                                                  
                 axis: (0, 0, 1)
-                origin: 300+arrowx+xcenter,300+arrowy+ycenter                                                                                                                                    
+                origin: 20+arrowx+xcenter,380+arrowy+ycenter                                                                                                                                    
                 #origin: (self.center_x - self.norm_image_size[0]/2, self.center_y - self.norm_image_size[1]/2, 0)                                                                                                                              
         canvas.after:                                                                                                                                              
             PopMatrix  
@@ -74,64 +75,129 @@ MainWidget:
     Label:
         text: 'Aquarium Temperature:'
         bold: True
-        pos: 10, 200
+        pos: 20, 400
         text_size:self.size
-        halign: "left"
-        valign: "middle"
+        #halign: "left"
+        #valign: "middle"
     Label:
         id: temp_int
         text: 'N/A°C'
         bold: True
-        pos: 180, 200
+        pos: 180, 400
         text_size:self.size
-        halign: "left"
-        valign: "middle"
+        #halign: "left"
+        #valign: "middle"
     Label:
         id: date_int
         text: 'N/A'
         bold: True
-        pos: -150, 200
+        pos: 100, 380
+        text_size:self.size
+    
+    Image:
+        id: graph_temp_int_sfere
+        source: semisfere
+        size_hint: None, None
+        size: 200, 200
+        #pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        pos: 300,380
 
+    Image:
+        id: graph_temp_ext_arrow
+        name: 'arrow'
+        angle: 120
+
+        source: arrow
+        size_hint: None, None
+        size: 90,90
+        pos: 300+arrowx,380+arrowy
+        #pos_hint: {'center_x': 0.5, 'center_y': 0.5}   
+        # apply rotation matrix to this Image                                                                                                                                            
+        canvas.before:                                                                                                                                             
+            PushMatrix                                                                                                                                             
+            Rotate:                                                                                                                                                
+                angle: self.angle                                                                                                                                  
+                axis: (0, 0, 1)
+                origin: 300+arrowx+xcenter,380+arrowy+ycenter                                                                                                                                    
+                #origin: (self.center_x - self.norm_image_size[0]/2, self.center_y - self.norm_image_size[1]/2, 0)                                                                                                                              
+        canvas.after:                                                                                                                                              
+            PopMatrix 
 
     Label:
         text: 'External Temperature:'
         bold: True
-        pos: 10, 170
+        pos: 305, 400
         text_size:self.size
-        halign: "left"
-        valign: "middle"
-    Label:
-        text: 'External Humidity:'
-        bold: True
-        pos: 10, 140
-        text_size:self.size
-        halign: "left"
-        valign: "middle"
+        #halign: "left"
+        #valign: "middle"
+    
     Label:
         id: temp_ext
         text: 'N/A°C'
         bold: True
-        pos: 180, 170
+        pos: 460, 400
         text_size:self.size
-        halign: "left"
-        valign: "middle"
-    Label:
-        id: hum_ext
-        text: 'N/A%'
-        bold: True
-        pos: 180, 140
-        text_size:self.size
-        halign: "left"
-        valign: "middle"
+        #halign: "left"
+        #valign: "middle"
+    
     Label:
         id: date_ext
         text: 'N/A'
         bold: True
-        pos: -150, 155
+        text_size:self.size
+        pos: 380, 380
 
+    Image:
+        id: graph_temp_int_sfere
+        source: semisfere
+        size_hint: None, None
+        size: 200, 200
+        #pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        pos: 150,200
 
+    Image:
+        id: graph_temp_hum_arrow
+        name: 'arrow'
+        angle: 120
+
+        source: arrow
+        size_hint: None, None
+        size: 90,90
+        pos: 150+arrowx,200+arrowy
+        #pos_hint: {'center_x': 0.5, 'center_y': 0.5}   
+        # apply rotation matrix to this Image                                                                                                                                            
+        canvas.before:                                                                                                                                             
+            PushMatrix                                                                                                                                             
+            Rotate:                                                                                                                                                
+                angle: self.angle                                                                                                                                  
+                axis: (0, 0, 1)
+                origin: 150+arrowx+xcenter,200+arrowy+ycenter                                                                                                                                    
+                #origin: (self.center_x - self.norm_image_size[0]/2, self.center_y - self.norm_image_size[1]/2, 0)                                                                                                                              
+        canvas.after:                                                                                                                                              
+            PopMatrix 
+
+    Label:
+        text: 'External Humidity:'
+        bold: True
+        pos: 160, 220
+        text_size:self.size
+        #halign: "left"
+        #valign: "middle"
     
-
+    Label:
+        id: hum_ext
+        text: 'N/A%'
+        bold: True
+        pos: 290, 220
+        text_size:self.size
+        #halign: "left"
+        #valign: "middle"
+    Label:
+        id: date_ext_b
+        text: 'N/A'
+        bold: True
+        text_size:self.size
+        pos: 230, 200
 
     Button:
         text: 'Settings'

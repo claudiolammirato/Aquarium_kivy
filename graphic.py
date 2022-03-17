@@ -127,9 +127,9 @@ class MainWidget(Screen):
 
     def on_start(self, *args):
         self.ids.username.text = str(Aq_Settings.read_settings('User_info', 'username'))
-        self.anim = Animation(angle=120) + Animation(angle=-60)
-        self.anim.repeat = True    # repeat forever
-        self.anim.start(self.ids.arrow)
+        self.anim = Animation(angle=-60, duration=2)
+        #self.anim.repeat = True    # repeat forever
+        self.anim.start(self.ids.graph_temp_int_arrow)
 
            
     def update_sensors(self, nap):
@@ -156,6 +156,7 @@ class MainWidget(Screen):
                 self.ids.temp_ext.text = str(data_ext[0])[0:4]+'°C'
                 self.ids.hum_ext.text = str(data_ext[1])[0:4]+'%'
             self.ids.date_ext.text = str(datetime.fromtimestamp(data_ext[2]).strftime('%I:%M %p'))
+            self.ids.date_ext_b.text = str(datetime.fromtimestamp(data_ext[2]).strftime('%I:%M %p'))
         else:
             print('external value error')
 

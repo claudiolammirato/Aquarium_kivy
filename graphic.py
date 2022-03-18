@@ -190,6 +190,38 @@ class MainWidget(Screen):
         else:
             print('external value error')
 
+        self.ids.username.text = str(Aq_Settings.read_settings('User_info', 'username'))
+        if(data_int[0] < 22 or data_int[0] > 30):
+            self.anim1 = Animation(angle=-50, duration=2)
+        elif(data_int[0] >= 22 and data_int[0] < 24):
+            self.anim1 = Animation(angle=(data_int[0]-22.25)*40, duration=2)
+        elif(data_int[0] >= 28 and data_int[0] < 30):
+            self.anim1 = Animation(angle=(data_int[0]-29.75)*-40, duration=2)
+        else:
+            self.anim1 = Animation(angle=110, duration=2)
+        #self.anim.repeat = True    # repeat forever
+        self.anim1.start(self.ids.graph_temp_int_arrow)
+
+        if(data_ext[0] < 14 or data_ext[0] > 35):
+            self.anim2 = Animation(angle=-50, duration=2)
+        elif(data_ext[0] >= 14 and data_ext[0] < 22):
+            self.anim2 = Animation(angle=(data_ext[0]-16)*10, duration=2)
+        else:
+            self.anim2 = Animation(angle=110, duration=2)
+        #self.anim.repeat = True    # repeat forever
+        self.anim2.start(self.ids.graph_temp_ext_arrow)
+        if(data_ext[1] < 30 or data_ext[1] > 70):
+            self.anim3 = Animation(angle=-50, duration=2)
+        elif(data_ext[1] >= 30 and data_ext[1] < 50):
+            self.anim3 = Animation(angle=(data_ext[1]-32.5)*4, duration=2)
+        elif(data_ext[1] >= 50 and data_ext[1] < 80):
+            self.anim3 = Animation(angle=(data_ext[1]-76.25)*-2.6666, duration=2)
+        else:
+            self.anim3 = Animation(angle=110, duration=2)
+        #self.anim3 = Animation(angle=(80-76.25)*-2.6666, duration=2)
+        #self.anim.repeat = True    # repeat forever
+        self.anim3.start(self.ids.graph_hum_ext_arrow)
+
     def update_time(self, nap):
         now = datetime.now()
         self.ids.time.text = now.strftime('%H:%M:%S') 

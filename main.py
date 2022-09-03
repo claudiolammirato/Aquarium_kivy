@@ -6,6 +6,7 @@ from ds18_sensor import DS18B20
 from dht_sensor import DHT
 import time, os
 
+
 def check_database():
     print('check database')
     try:
@@ -23,6 +24,7 @@ def check_database():
         database.create_table("sensors_ext", columns_ext)
         database.close()
         #print('error')
+
 
 def main():
     
@@ -43,10 +45,18 @@ def main():
     #p2.start()
 
 '''
-    #Graphic Section - HAS TO BE LAST!!!!
-    p3 = threading.Thread(target=AquariumApp().run())
-    p3.start()
+    
 
-   
+    #Graphic Section - HAS TO BE LAST!!!!
+    p4 = threading.Thread(target=AquariumApp().run())
+    p4.start()
+    
+
 if __name__ == "__main__":
     main()
+    
+
+
+
+
+

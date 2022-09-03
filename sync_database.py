@@ -14,7 +14,7 @@ class SyncDatabase:
         database=Aq_Settings.read_settings('MySql', 'databasename')
         )
         self.cur = self.con_sqlite.cursor()
-        self.cursor = self.con_mysql.cursor()
+        self.cursor = self.con_mysql.cursor(buffered=True)
         self.database_structure = []
         self.query = ''
 
@@ -43,7 +43,7 @@ class SyncDatabase:
                 #self.table_type.append(data[2])
             self.query = self.query[:len(self.query)-2]
             self.query += ', UNIQUE ({0}));'.format(self.database_structure[0][1])
-            print(self.query)
+            #print(self.query)
             
             self.cursor.execute(self.query)
             self.database_structure.clear()
@@ -89,7 +89,7 @@ class SyncDatabase:
                 #print(row[0])
                 #string_row = row.replace(" ","'")
                 query = 'INSERT INTO `{0}` ({1}) VALUES ({2}) ON DUPLICATE KEY UPDATE {3};'.format(table[0], new_name_query, item_row,update_name)
-                print(query)
+                #print(query)
                 item_row= ''
                 update_name=''
                 #print (names[1])
@@ -102,6 +102,31 @@ class SyncDatabase:
         tables = self.cur.fetchall()
         rows = []
         tavola = []
+
+        self.cur.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        tables = self.cur.fetchall()
+        for table in tables:
+            #print(table[0])
+            coloumns = self.cur.execute("PRAGMA table_info({0})".format(table[0]))
+            for coloumn in coloumns:
+                self.database_structure.append([table[0],coloumn[1], coloumn[2]])
+
+            self.query = "CREATE TABLE IF NOT EXISTS "+table[0]+" ("
+            for data in self.database_structure:
+                self.query += data[1]
+                self.query += ' '
+                self.query += data[2]
+                self.query += ', '
+
+                #self.table_coloumn.append(data[1])
+                #self.table_type.append(data[2])
+            self.query = self.query[:len(self.query)-2]
+            self.query += ', UNIQUE ({0}));'.format(self.database_structure[0][1])
+            #print(self.query)
+            
+            self.cursor.execute(self.query)
+            self.database_structure.clear()
+            self.query = ''
         
         for table in tables:
             self.cursor.execute("SELECT * FROM {0};".format(table[0]))
@@ -110,16 +135,26 @@ class SyncDatabase:
                 #print(row)
                 rows.append(row)
             #print(rows[len(rows)-1][0])
-            tavola.append(rows[len(rows)-1][0])
+                try:
+                    tavola.append(rows[len(rows)-1][0])
+                    #print(min(tavola))
+                    return min(tavola) 
+                except:
+                    tavola.append(rows[0][0])
+                    #print(tavola)
+                    return tavola
             
-        print(min(tavola))
-        return min(tavola)  
-        
             
-            
-
+                
+    def create_table_mysql(self):
+        self.cursor.execute("CREATE TABLE sensors_int (id INTEGER AUTO_INCREMENT PRIMARY KEY, temp_int FLOAT, date_int FLOAT)")    
+        self.cursor.execute("INSERT INTO sensors_int (temp_int, date_int) VALUES (25, 0)")
+        self.cursor.execute("CREATE TABLE sensors_ext (id INTEGER AUTO_INCREMENT PRIMARY KEY, temp_ext FLOAT, hum_ext FLOAT, date_ext FLOAT)")    
+        self.cursor.execute("INSERT INTO sensors_ext(temp_ext, hum_ext, date_ext) VALUES (25, 50, 0)")
+        self.con_mysql.commit()
 
 data = SyncDatabase()
 
 data.database_sync()
 #data.read_database()
+#data.create_table_mysql()
